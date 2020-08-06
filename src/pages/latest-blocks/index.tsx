@@ -1,4 +1,6 @@
 import React, { FC } from 'react';
+import Header from './components/header';
+import { StyledWrapper } from './styles';
 
 interface IProps {
   [x: string]: any;
@@ -7,9 +9,9 @@ interface IProps {
 const LatestBlocks: FC<IProps> = (props) => {
   const {  } = props;
   return (
-    <div>
-      test
-    </div>
+    <StyledWrapper>
+      <Header/>
+    </StyledWrapper>
   );
 };
 

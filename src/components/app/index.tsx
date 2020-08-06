@@ -3,12 +3,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
-import logo from '../../logo.svg';
 import LatestBlocks from '../../pages/latest-blocks';
 import SingleBlock from '../../pages/single-block';
 import PageNotFound from '../../pages/page-not-found';
+import Layout from '../layout';
 
 
 function Index() {
@@ -16,13 +15,19 @@ function Index() {
     <Router>
       <Switch>
         <Route path={'/block/:hash'}>
-          <SingleBlock/>
+          <Layout>
+            <SingleBlock/>
+          </Layout>
         </Route>
         <Route exact path={'/'}>
-          <LatestBlocks/>
+          <Layout>
+            <LatestBlocks/>
+          </Layout>
         </Route>
         <Route path="*">
-          <PageNotFound/>
+          <Layout>
+            <PageNotFound/>
+          </Layout>
         </Route>
       </Switch>
     </Router>
