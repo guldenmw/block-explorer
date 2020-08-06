@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Block Explorer
+
+Single page app used to explore blockchain hashes of various cryptocurrencies.
+Built with React, Redux, Redux Saga, Typescript and Styled Components. 
 
 ## Available Scripts
 
