@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 
-export const StyledWrapper = styled.div<any>`
+export const StyledLatestBlocks = styled.div<any>`
   display: flex;
+  flex-direction: column;
   flex: 1;
 `;

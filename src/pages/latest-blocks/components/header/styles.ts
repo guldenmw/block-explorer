@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-export const StyledWrapper = styled.header`
+export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   flex: 1;

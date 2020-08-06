@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { StyledWrapper } from './styles';
+import { StyledHeader } from './styles';
 
 interface IProps {
   [x: string]: any;
@@ -8,13 +8,13 @@ interface IProps {
 const Header: FC<IProps> = (props) => {
   const {  } = props;
   return (
-    <StyledWrapper>
+    <StyledHeader>
       <h2 className={'page-title'}>Block Explorer</h2>
       <div className={'search'}>
         <input className={'search-bar'} type={'text'} name={'search'} placeholder={'Search for a block hash'}/>
         <button className={'search-button'}>Search</button>
       </div>
-    </StyledWrapper>
+    </StyledHeader>
   );
 };
 
