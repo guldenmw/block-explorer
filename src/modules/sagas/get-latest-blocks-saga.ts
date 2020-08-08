@@ -1,11 +1,12 @@
-import { call, put } from 'redux-saga/effects';
+import { call, fork, put, select } from 'redux-saga/effects';
 import { fetchLatestBlocksError, fetchLatestBlocksSuccess } from '../actions';
-import { IBlock, ILatestBlock, ITransaction } from '../interfaces';
+import { IBlock, ITransaction, TSymbols } from '../interfaces';
 import getLatestBlockNumber from '../api/get-latest-block-number';
 import getBlocksByHeights from '../api/get-blocks-by-height';
 import getTransactions from '../api/get-transactions';
 import { pools } from '../constants';
-import getEthBlocksByHeights from '../api/get-eth-blocks-by-range';
+import { IApplicationState } from '../reducer';
+import getLastestEthBlocksSaga from './get-latest-eth-blocks-saga';
 
 
 /**
@@ -26,27 +27,19 @@ export const getBlockHeightsRange = (startHeight: number, range: number): number
 /**
  * Saga responsible for fetching and shaping data of the latest blocks
  */
-function* getLastestBlocksSaga(action) {
+function* getLastestBtcBchBlocksSaga() {
   try {
-    const symbol = action?.data;
+    const symbol = yield select((state: IApplicationState) => state?.currentSymbol);
 
     // Fetch latest blocks
     const latestBlockNumber: number = yield call(getLatestBlockNumber, symbol);
-    let latestBlocks: IBlock[];
-    if (symbol === 'eth') {
-      latestBlocks = yield call(getEthBlocksByHeights, latestBlockNumber, 20);
-    } else {
-      const heights = getBlockHeightsRange(latestBlockNumber, 20);
-      latestBlocks = yield call(getBlocksByHeights, symbol, heights?.join(','));
-    }
+    const heights = getBlockHeightsRange(latestBlockNumber, 20);
+    const latestBlocks: IBlock[] = yield call(getBlocksByHeights, symbol, heights?.join(','));
 
-    // Fetch the first 5 transactions of each block by building
+    // Fetch the first transaction of each block by building
     // a comma separated string of the combined transaction ids
-    const txIds = latestBlocks?.reduce((txIdStr, block) => {
-      const currentTxIds = block?.tx?.slice(0, 4)?.join(',');
-      return txIdStr + currentTxIds;
-    }, '');
-    const transactions: ITransaction[] = yield call(getTransactions, symbol, txIds);
+    const txIds = latestBlocks?.map(block => block?.tx?.[0]);
+    const transactions: ITransaction[] = yield call(getTransactions, symbol, txIds?.join(','));
 
     // Add all the transactions and the block miner to each block
     let updatedBlocks = [];
@@ -61,7 +54,6 @@ function* getLastestBlocksSaga(action) {
 
       updatedBlocks.push({
         ...block,
-        transactions: txs,
         miner: minerName ? minerName : 'Unknown',
       })
     }
@@ -70,6 +62,15 @@ function* getLastestBlocksSaga(action) {
   } catch (ex) {
     console.error(ex);
     return yield put(fetchLatestBlocksError());
+  }
+}
+
+function* getLastestBlocksSaga(action) {
+  const symbol: TSymbols = yield select((state: IApplicationState) => state?.currentSymbol);
+  if (symbol === 'eth') {
+    yield fork(getLastestEthBlocksSaga);
+  } else {
+    yield fork(getLastestBtcBchBlocksSaga);
   }
 }
 

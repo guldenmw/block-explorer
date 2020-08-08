@@ -1,30 +1,20 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { StyledTables } from './styles';
-import { ITableBlock, TSymbols } from '../../../../modules/interfaces';
-import { connect } from 'react-redux';
-import { mapDispatchToProps, mapStateToProps } from './container';
+import { ITableBlock } from '../../../../modules/interfaces';
 import { accessors } from '../../../../modules/constants';
 import { useHistory } from 'react-router';
 
 
 interface IProps {
-  symbol: TSymbols;
-  blocks: Array<ITableBlock>;
-  fetchLatestBlocks: (symbol: TSymbols) => void;
+  blocks: ITableBlock[];
 }
 
-const BlocksTable: FC<Partial<IProps>> = (props) => {
+const BlocksTable: FC<IProps> = (props) => {
   const {
-    symbol,
     blocks,
-    fetchLatestBlocks,
   } = props;
 
   const history = useHistory();
-
-  useEffect(() => {
-    fetchLatestBlocks(symbol);
-  }, [symbol]);
 
   const handleHashClick = (blockHash: string) => {
     history.push(`/block/${blockHash}`);
@@ -69,8 +59,6 @@ const BlocksTable: FC<Partial<IProps>> = (props) => {
   );
 };
 
-BlocksTable.defaultProps = {
-  symbol: 'btc',
-};
+BlocksTable.defaultProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(BlocksTable) as typeof BlocksTable;
+export default BlocksTable;

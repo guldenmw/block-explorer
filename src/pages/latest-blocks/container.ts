@@ -1,7 +1,8 @@
-import { fetchLatestBlocksStart } from '../../../../modules/actions';
-import { accessors } from '../../../../modules/constants';
-import { IApplicationState } from '../../../../modules/reducer';
-import { TSymbols } from '../../../../modules/interfaces';
+import { fetchLatestBlocksStart } from '../../modules/actions';
+import { accessors } from '../../modules/constants';
+import { IApplicationState } from '../../modules/reducer';
+import { TSymbols } from '../../modules/interfaces';
+import { selectSymbol } from '../../modules/actions';
 
 export const mapStateToProps = (state: IApplicationState) => {
   const symbol: TSymbols = state?.currentSymbol;
@@ -27,5 +28,8 @@ export const mapStateToProps = (state: IApplicationState) => {
 export const mapDispatchToProps = dispatch => ({
   fetchLatestBlocks(data) {
     dispatch(fetchLatestBlocksStart(data));
+  },
+  selectSymbol(data: TSymbols) {
+    dispatch(selectSymbol(data));
   },
 });

@@ -1,23 +1,22 @@
-import React, { Component, FC } from 'react';
+import React, { FC } from 'react';
 import { StyledSidebar } from './styles';
 import BitcoinIcon from '../../../../components/icons/bitcoin-icon';
 import EthereumIcon from '../../../../components/icons/ethereum-icon';
 import BitcoinCashIcon from '../../../../components/icons/bitcoin-cash-icon';
-import { connect } from 'react-redux';
-import { mapDispatchToProps, mapStateToProps } from './container';
 import { TSymbols } from '../../../../modules/interfaces';
+import CurrencyOption from '../currency-option';
 
-interface ICurrencyOption {
+
+export interface ICurrencyOption {
   name: string;
   icon: any,
-  price: string;
   symbol: TSymbols;
 }
 
 const currencyOptions: ICurrencyOption[] = [
-  {name: 'Bitcoin', icon: <BitcoinIcon/>, price: '$9,273.76', symbol: 'btc'},
-  {name: 'Ethereum', icon: <EthereumIcon/>, price: '$188.03', symbol: 'eth'},
-  {name: 'Bitcoin Cash', icon: <BitcoinCashIcon/>, price: '$382.77', symbol: 'bch'}
+  {name: 'Bitcoin', icon: <BitcoinIcon/>, symbol: 'btc'},
+  {name: 'Ethereum', icon: <EthereumIcon/>, symbol: 'eth'},
+  {name: 'Bitcoin Cash', icon: <BitcoinCashIcon/>, symbol: 'bch'}
 ]
 interface IProps {
   symbol: TSymbols;
@@ -27,20 +26,21 @@ interface IProps {
 const Sidebar: FC<IProps> = (props) => {
   const { symbol, selectSymbol } = props;
 
+  const handleOnClick = (value: TSymbols) => {
+    selectSymbol(value);
+  }
+
   return (
     <StyledSidebar>
       <h3 className={'page-title'}>Block Explorer</h3>
       <div className={'currency-options'}>
-      {currencyOptions.map(({ name, icon, price, symbol }, index) => (
-        <div className={'currency-option'}>
-          <div onClick={e => selectSymbol(symbol)} className={'option-icon'}>
-            {icon}
-          </div>
-          <div className={'option-details'} onClick={e => selectSymbol(symbol)}>
-            <strong className={'currency-name'}>{name}</strong>
-            <span className={'currency-price'}>{price}</span>
-          </div>
-        </div>
+      {currencyOptions.map((option, index) => (
+        <CurrencyOption
+          option={option}
+          className={symbol === option?.symbol && 'selected'}
+          onClick={handleOnClick}
+          key={index}
+        />
       ))}
       </div>
     </StyledSidebar>
@@ -49,4 +49,4 @@ const Sidebar: FC<IProps> = (props) => {
 
 Sidebar.defaultProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default Sidebar;

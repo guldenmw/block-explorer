@@ -10,7 +10,16 @@ const BlockInfo: FC<IProps> = (props) => {
   const { currentBlock } = props;
   return (
     <StyledBlockInfo>
-      {currentBlock?.hash}
+      {currentBlock && Object?.entries(currentBlock)?.map(([key, val], index) => {
+        if (!['transactions', 'tx'].includes(key)) {
+          return (
+            <div className={'block-details-row'} key={index}>
+              <span className={'entry-key'}>{key}</span>
+              <span className={'entry-val'}>{val}</span>
+            </div>
+          )
+        }
+      })}
     </StyledBlockInfo>
   );
 };

@@ -77,3 +77,31 @@ export interface ITransaction {
   rbf: boolean;
   weight: number;
 }
+
+export interface IEthBlock {
+  hash: string;
+  timestamp: string;
+  number: string;
+  miner: string;
+  transactionCount: number;
+  internalTransactionCount: number;
+  difficulty: string;
+  totalDifficulty: string;
+  size: string;
+  nonce: string;
+  sha3Uncles: string;
+  gasLimit: string;
+  gasUsed: string;
+  staticReward: string;
+  blockReward: string;
+  totalFees: string;
+  totalUncleReward: string;
+
+  uncles: string[];
+
+  parentHash: string;
+  transactionsRoot: string;
+  stateRoot: string;
+  logsBloom: string;
+  extraData: string;
+}
