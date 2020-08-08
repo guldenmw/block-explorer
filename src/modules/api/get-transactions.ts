@@ -8,7 +8,7 @@ import { ITransaction, TSymbols } from '../interfaces';
  * @param transactionIds - comma separated string list of transaction ids eg 12345,67890
  */
 const getTransactions = async (symbol: TSymbols, transactionIds: string): Promise<ITransaction[]> => {
-  const url = `${apiBase}/${symbol}/transactions?txids=${transactionIds}`;
+  const url = `${apiBase}/haskoin-store/${symbol}/transactions?txids=${transactionIds}`;
   const response = await fetch(url);
   handleResponse(response);
   return await response.json();

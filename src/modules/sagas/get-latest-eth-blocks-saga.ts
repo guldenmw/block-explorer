@@ -32,13 +32,7 @@ function* getLastestBlocksSaga(action) {
 
     // Fetch latest blocks
     const latestBlockNumber: number = yield call(getLatestBlockNumber, symbol);
-    let latestBlocks: IBlock[];
-    if (symbol === 'eth') {
-      latestBlocks = yield call(getEthBlocksByHeights, latestBlockNumber, 20);
-    } else {
-      const heights = getBlockHeightsRange(latestBlockNumber, 20);
-      latestBlocks = yield call(getBlocksByHeights, symbol, heights?.join(','));
-    }
+    let latestBlocks: IBlock[] = yield call(getEthBlocksByHeights, latestBlockNumber, 20);
 
     // Fetch the first 5 transactions of each block by building
     // a comma separated string of the combined transaction ids
