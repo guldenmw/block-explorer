@@ -1,19 +1,19 @@
 import { call, put } from 'redux-saga/effects';
-import { fetchLatestBlocksError, fetchLatestBlocksSuccess } from '../actions';
-import { IEthBlock } from '../interfaces';
-import getLatestEthBlocks from '../api/get-latest-eth-blocks';
+import { fetchLatestBlocksError, fetchLatestBlocksSuccess } from '../../actions';
+import { IFullEthBlock } from '../../interfaces';
+import getLatestEthBlocks from '../../api/get-latest-eth-blocks';
 import moment from 'moment';
 
 
 interface IResponse {
-  blockHeaders: IEthBlock[];
+  blockHeaders: IFullEthBlock[];
   from: string;
   size: number;
 }
 /**
  * Saga responsible for fetching and shaping data of the latest ETH blocks
  */
-function* getLastestEthBlocksSaga() {
+function* getLastestEthBlocksWorker() {
   try {
 
     const latestBlocks: IResponse = yield call(getLatestEthBlocks, 20);
@@ -33,4 +33,4 @@ function* getLastestEthBlocksSaga() {
   }
 }
 
-export default getLastestEthBlocksSaga;
+export default getLastestEthBlocksWorker;

@@ -1,12 +1,11 @@
 import { call, fork, put, select } from 'redux-saga/effects';
-import { fetchLatestBlocksError, fetchLatestBlocksSuccess } from '../actions';
-import { IBlock, ITransaction, TSymbols } from '../interfaces';
-import getLatestBlockNumber from '../api/get-latest-block-number';
-import getBlocksByHeights from '../api/get-blocks-by-height';
-import getTransactions from '../api/get-transactions';
-import { pools } from '../constants';
-import { IApplicationState } from '../reducer';
-import getLastestEthBlocksSaga from './get-latest-eth-blocks-saga';
+import { fetchLatestBlocksError, fetchLatestBlocksSuccess } from '../../actions';
+import { IFullBlock, ITransaction } from '../../interfaces';
+import getLatestBlockNumber from '../../api/get-latest-block-number';
+import getBlocksByHeights from '../../api/get-blocks-by-height';
+import getTransactions from '../../api/get-transactions';
+import { pools } from '../../constants';
+import { IApplicationState } from '../../reducer';
 import moment from 'moment';
 
 
@@ -28,14 +27,14 @@ export const getBlockHeightsRange = (startHeight: number, range: number): number
 /**
  * Saga responsible for fetching and shaping data of the latest blocks
  */
-function* getLastestBtcBchBlocksSaga() {
+function* getLastestBtcBchBlocksWorker() {
   try {
     const symbol = yield select((state: IApplicationState) => state?.currentSymbol);
 
     // Fetch latest blocks
     const latestBlockNumber: number = yield call(getLatestBlockNumber, symbol);
     const heights = getBlockHeightsRange(latestBlockNumber, 20);
-    const latestBlocks: IBlock[] = yield call(getBlocksByHeights, symbol, heights?.join(','));
+    const latestBlocks: IFullBlock[] = yield call(getBlocksByHeights, symbol, heights?.join(','));
 
     // Fetch the first transaction of each block by building
     // a comma separated string of the combined transaction ids
@@ -69,13 +68,5 @@ function* getLastestBtcBchBlocksSaga() {
   }
 }
 
-function* getLastestBlocksSaga(action) {
-  const symbol: TSymbols = yield select((state: IApplicationState) => state?.currentSymbol);
-  if (symbol === 'eth') {
-    yield fork(getLastestEthBlocksSaga);
-  } else {
-    yield fork(getLastestBtcBchBlocksSaga);
-  }
-}
 
-export default getLastestBlocksSaga;
+export default getLastestBtcBchBlocksWorker;

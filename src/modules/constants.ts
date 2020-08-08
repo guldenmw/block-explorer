@@ -1,4 +1,7 @@
 
+export const wei = 1000000000000000000;
+export const satoshi = 100000000;
+
 export const tableColumns = {
   eth: [
     'number',

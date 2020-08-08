@@ -1,12 +1,12 @@
 import React, { FC, useState } from 'react';
 import { StyledTables } from './styles';
-import { ITableBlock, TSymbols } from '../../../../modules/interfaces';
+import { ITableBlock, TSymbol } from '../../../../modules/interfaces';
 import { tableColumns } from '../../../../modules/constants';
 import { useHistory } from 'react-router';
 
 
 interface IProps {
-  symbol: TSymbols;
+  symbol: TSymbol;
   blocks: ITableBlock[];
 }
 

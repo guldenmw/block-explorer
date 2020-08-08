@@ -1,12 +1,12 @@
 import React, { FC, useEffect, useState } from 'react';
 import { ICurrencyOption } from '../sidebar';
-import { TSymbols } from '../../../../modules/interfaces';
+import { TSymbol } from '../../../../modules/interfaces';
 import { StyledOption } from './styles';
 
 interface IProps {
   className: string;
   option: ICurrencyOption;
-  onClick: (value: TSymbols) => void;
+  onClick: (value: TSymbol) => void;
 }
 
 const CurrencyOption: FC<IProps> = (props) => {

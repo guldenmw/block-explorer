@@ -3,14 +3,14 @@ import { StyledSidebar } from './styles';
 import BitcoinIcon from '../../../../components/icons/bitcoin-icon';
 import EthereumIcon from '../../../../components/icons/ethereum-icon';
 import BitcoinCashIcon from '../../../../components/icons/bitcoin-cash-icon';
-import { TSymbols } from '../../../../modules/interfaces';
+import { TSymbol } from '../../../../modules/interfaces';
 import CurrencyOption from '../currency-option';
 
 
 export interface ICurrencyOption {
   name: string;
   icon: any,
-  symbol: TSymbols;
+  symbol: TSymbol;
 }
 
 const currencyOptions: ICurrencyOption[] = [
@@ -19,14 +19,14 @@ const currencyOptions: ICurrencyOption[] = [
   {name: 'Bitcoin Cash', icon: <BitcoinCashIcon/>, symbol: 'bch'}
 ]
 interface IProps {
-  symbol: TSymbols;
-  selectSymbol: (symbol: TSymbols) => void;
+  symbol: TSymbol;
+  selectSymbol: (symbol: TSymbol) => void;
 }
 
 const Sidebar: FC<IProps> = (props) => {
   const { symbol, selectSymbol } = props;
 
-  const handleOnClick = (value: TSymbols) => {
+  const handleOnClick = (value: TSymbol) => {
     selectSymbol(value);
   }
 

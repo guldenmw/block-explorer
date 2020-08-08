@@ -4,17 +4,17 @@ import Sidebar from './components/sidebar';
 import BlocksTable from './components/blocks-table';
 import { connect } from 'react-redux';
 import { mapDispatchToProps, mapStateToProps } from './container';
-import { ITableBlock, TSymbols } from '../../modules/interfaces';
+import { ITableBlock, TSymbol } from '../../modules/interfaces';
 import Loader from '../../components/loader';
 
 
 interface IProps {
-  symbol: TSymbols;
+  symbol: TSymbol;
   blocks: Array<ITableBlock>;
   isLoading: boolean;
   hasError: boolean;
-  selectSymbol: (symbol: TSymbols) => void;
-  fetchLatestBlocks: (symbol: TSymbols) => void;
+  selectSymbol: (symbol: TSymbol) => void;
+  fetchLatestBlocks: (symbol: TSymbol) => void;
 }
 
 const LatestBlocks: FC<Partial<IProps>> = (props) => {
@@ -49,4 +49,4 @@ const LatestBlocks: FC<Partial<IProps>> = (props) => {
 
 LatestBlocks.defaultProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(LatestBlocks);
+export default connect(mapStateToProps, mapDispatchToProps)(LatestBlocks) as typeof LatestBlocks;

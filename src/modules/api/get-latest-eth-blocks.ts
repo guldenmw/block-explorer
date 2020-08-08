@@ -1,6 +1,6 @@
 import { handleResponse } from './helpers';
 import { apiBase } from './index';
-import { IBlock, TSymbols } from '../interfaces';
+import { IBlock } from '../interfaces';
 
 /**
  * API wrapper that fetches the latest Ethereum blocks according to the size provided

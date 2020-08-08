@@ -1,10 +1,10 @@
 import { IApplicationState } from '../../modules/reducer';
-import { fetchLatestBlocksStart } from '../../modules/actions';
-import { TSymbols } from '../../modules/interfaces';
+import { fetchSingleBlockStart } from '../../modules/actions';
+import { TSymbol } from '../../modules/interfaces';
 
-export const mapStateToProps = (state: IApplicationState, ownProps) => {
-  const symbol: TSymbols = state?.currentSymbol;
-  const currentBlock = state?.blocks?.find(block => block?.hash === ownProps?.blockHash);
+export const mapStateToProps = (state: IApplicationState) => {
+  const symbol: TSymbol = state?.currentSymbol;
+  const currentBlock = state?.currentBlock;
 
   return {
     symbol,
@@ -13,7 +13,7 @@ export const mapStateToProps = (state: IApplicationState, ownProps) => {
 };
 
 export const mapDispatchToProps = dispatch => ({
-  fetchLatestBlocks(data) {
-    dispatch(fetchLatestBlocksStart(data));
+  fetchBlock(data) {
+    dispatch(fetchSingleBlockStart(data));
   },
 });
