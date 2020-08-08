@@ -1,1 +1,1 @@
-export const apiBase = 'https://blockchain.info/';
+export const apiBase = 'https://api.blockchain.info/haskoin-store';

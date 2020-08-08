@@ -1,14 +1,12 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import latestBlocks from './reducer/latest-blocks'
+import reducer from './reducer'
 import { sagaMiddleware } from './middleware';
 import saga from '../modules/sagas';
 
 export default createStore(
-  combineReducers({
-    latestBlocks,
-  }),
+  reducer,
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 )
 

@@ -20,9 +20,9 @@ const getBlockHeightsRange = (startHeight: number, range: number): number[] => {
 
 function* getLastestBlocksSaga(action) {
   try {
-    const { data: { symbol } } = action;
+    const symbol = action?.data;
 
-    const latestBlock: ILatestBlock = yield call(getLatestBlock);
+    const latestBlock: ILatestBlock = yield call(getLatestBlock, symbol);
     const heights = getBlockHeightsRange(latestBlock?.height, 20);
 
     const latestBlocks: IBlock[] = yield call(getBlocksByHeights, symbol, heights?.join(','));

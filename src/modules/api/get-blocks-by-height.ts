@@ -8,7 +8,7 @@ import { IBlock, TSymbols } from '../interfaces';
  * @param heights - comma separated string list of height values eg 642463,642462
  */
 const getBlocksByHeights = async (symbol: TSymbols, heights: string): Promise<IBlock[]> => {
-  const url = `${apiBase}/haskoin-store/${symbol}/block/heights?${heights}`;
+  const url = `${apiBase}/${symbol}/block/heights?heights=${heights}`;
   const response = await fetch(url);
   handleResponse(response);
   return await response.json();
