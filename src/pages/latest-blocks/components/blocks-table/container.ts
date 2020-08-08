@@ -1,8 +1,10 @@
 import { fetchLatestBlocksStart } from '../../../../modules/actions';
 import { accessors } from '../../../../modules/constants';
 import { IApplicationState } from '../../../../modules/reducer';
+import { TSymbols } from '../../../../modules/interfaces';
 
 export const mapStateToProps = (state: IApplicationState) => {
+  const symbol: TSymbols = state?.currentSymbol;
   const blocks = state?.blocks?.map(block => {
     return Object.entries(block)?.reduce((newBlock, [key, val]) => {
       if (accessors.includes(key)) {
@@ -17,6 +19,7 @@ export const mapStateToProps = (state: IApplicationState) => {
 
 
   return {
+    symbol,
     blocks
   };
 };

@@ -24,7 +24,7 @@ const BlocksTable: FC<Partial<IProps>> = (props) => {
 
   useEffect(() => {
     fetchLatestBlocks(symbol);
-  }, []);
+  }, [symbol]);
 
   const handleHashClick = (blockHash: string) => {
     history.push(`/block/${blockHash}`);
