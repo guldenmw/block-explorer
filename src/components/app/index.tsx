@@ -14,7 +14,7 @@ function Index() {
   return (
     <Router>
       <Switch>
-        <Route path={'/block/:hash'}>
+        <Route path={'/block/:blockHash'}>
           <Layout>
             <SingleBlock/>
           </Layout>

@@ -1,21 +1,40 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useParams } from 'react-router';
+import { StyledSingleBlock } from './styles';
+import Transactions from './components/transactions';
+import BlockInfo from './components/block-info';
+import { IBlock, ITransaction } from '../../modules/interfaces';
+import { mapDispatchToProps, mapStateToProps } from './container';
+import { connect } from 'react-redux';
 
 interface IProps {
-  [x: string]: any;
+  currentBlock: IBlock;
+  transactions: ITransaction[];
+  fetchTransactions: (blockHash: string) => void;
 }
 
-const SingleBlock: FC<IProps> = (props) => {
-  const {  } = props;
-  const { hash } = useParams();
+const SingleBlock: FC<Partial<IProps>> = (props) => {
+  const {
+    currentBlock,
+    transactions,
+    fetchTransactions,
+  } = props;
+
+  const { blockHash } = useParams();
+
+  useEffect(() => {
+    fetchTransactions(blockHash);
+  }, [blockHash]);
 
   return (
-    <div>
-      {hash}
-    </div>
+    <StyledSingleBlock>
+      <h2 className={'page-title'}>Block Explorer</h2>
+      <BlockInfo currentBlock={currentBlock}/>
+      <Transactions transactions={transactions}/>
+    </StyledSingleBlock>
   );
 };
 
 SingleBlock.defaultProps = {};
 
-export default SingleBlock;
+export default connect(mapStateToProps, mapDispatchToProps)(SingleBlock);
