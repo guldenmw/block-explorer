@@ -8,7 +8,7 @@ export interface ILatestBlock {
   txIndexes: string[];
 }
 
-export interface IBlock {
+export interface IInitialBlock {
   hash: string;
   height: number;
   mainchain: boolean;
@@ -25,6 +25,11 @@ export interface IBlock {
   outputs: number;
   work: number;
   weight: number;
+}
+
+export interface IBlock extends IInitialBlock{
+  transactions: ITransaction[];
+  miner: string;
 }
 
 export interface ITableBlock {

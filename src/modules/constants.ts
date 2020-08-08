@@ -3,7 +3,7 @@ export const accessors = [
   'height',
   'hash',
   'time',
-  // 'miner',
+  'miner',
   'size',
 ]
 
