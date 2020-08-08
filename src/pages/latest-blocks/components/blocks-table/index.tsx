@@ -6,18 +6,14 @@ import { mapDispatchToProps, mapStateToProps } from './container';
 import { accessors } from '../../../../modules/constants';
 import { useHistory } from 'react-router';
 
-interface IComponentProps {
-  symbol?: TSymbols;
-}
 
-interface IContainerProps {
+interface IProps {
+  symbol: TSymbols;
   blocks: Array<ITableBlock>;
   fetchLatestBlocks: (symbol: TSymbols) => void;
 }
 
-type TProps = IComponentProps & Partial<IContainerProps>;
-
-const BlocksTable: FC<TProps> = (props) => {
+const BlocksTable: FC<Partial<IProps>> = (props) => {
   const {
     symbol,
     blocks,

@@ -14,10 +14,11 @@ function Index() {
   return (
     <Router>
       <Switch>
-        <Route path={'/block/:blockHash'}>
+        <Route path={'/block/:blockHash'} render={(props) => (
           <Layout>
-            <SingleBlock/>
+            <SingleBlock blockHash={props?.match?.params?.blockHash}/>
           </Layout>
+        )}>
         </Route>
         <Route exact path={'/'}>
           <Layout>

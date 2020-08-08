@@ -23,6 +23,6 @@ export const mapStateToProps = (state: IApplicationState) => {
 
 export const mapDispatchToProps = dispatch => ({
   fetchLatestBlocks(data) {
-    dispatch(fetchLatestBlocksStart('btc'));
+    dispatch(fetchLatestBlocksStart(data));
   },
 });

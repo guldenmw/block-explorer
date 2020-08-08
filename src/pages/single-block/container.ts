@@ -1,18 +1,19 @@
 import { IApplicationState } from '../../modules/reducer';
-import { fetchTransactionsStart } from '../../modules/actions';
+import { fetchLatestBlocksStart } from '../../modules/actions';
+import { TSymbols } from '../../modules/interfaces';
 
-export const mapStateToProps = (state: IApplicationState) => {
-  const currentBlock = state?.currentBlock;
-  const transactions = state?.transactions;
+export const mapStateToProps = (state: IApplicationState, ownProps) => {
+  const symbol: TSymbols = state?.currentSymbol;
+  const currentBlock = state?.blocks?.find(block => block?.hash === ownProps?.blockHash);
 
   return {
+    symbol,
     currentBlock,
-    transactions
   };
 };
 
 export const mapDispatchToProps = dispatch => ({
-  fetchTransactions(blockHash: string) {
-    dispatch(fetchTransactionsStart(blockHash));
-  }
+  fetchLatestBlocks(data) {
+    dispatch(fetchLatestBlocksStart(data));
+  },
 });
