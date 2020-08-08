@@ -1,5 +1,5 @@
 import { fetchLatestBlocksStart } from '../../modules/actions';
-import { accessors } from '../../modules/constants';
+import { tableColumns } from '../../modules/constants';
 import { IApplicationState } from '../../modules/reducer';
 import { TSymbols } from '../../modules/interfaces';
 import { selectSymbol } from '../../modules/actions';
@@ -10,7 +10,7 @@ export const mapStateToProps = (state: IApplicationState) => {
   const isLoading: boolean = state?.isLoading;
   const hasError: boolean = state?.hasError;
 
-  const cols = accessors?.[symbol] ? accessors?.[symbol] : accessors.default;
+  const cols = tableColumns?.[symbol] ? tableColumns?.[symbol] : tableColumns.default;
   const blocks = state?.blocks?.map(block => {
     return Object.entries(block)?.reduce((newBlock, [key, val]) => {
       if (cols.includes(key)) {

@@ -1,5 +1,5 @@
 
-export const accessors = {
+export const tableColumns = {
   eth: [
     'number',
     'hash',

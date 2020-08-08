@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { StyledTables } from './styles';
 import { ITableBlock, TSymbols } from '../../../../modules/interfaces';
-import { accessors } from '../../../../modules/constants';
+import { tableColumns } from '../../../../modules/constants';
 import { useHistory } from 'react-router';
 
 
@@ -22,7 +22,7 @@ const BlocksTable: FC<IProps> = (props) => {
     history.push(`/block/${blockHash}`);
   }
 
-  const cols = accessors[symbol] ? accessors[symbol] : accessors.default;
+  const cols = tableColumns[symbol] ? tableColumns[symbol] : tableColumns.default;
 
   return (
     <StyledTables>

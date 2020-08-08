@@ -4,14 +4,6 @@ import { IEthBlock } from '../interfaces';
 import getLatestEthBlocks from '../api/get-latest-eth-blocks';
 
 
-const unusedKeys = [
-  'parentHash',
-  'transactionsRoot',
-  'stateRoot',
-  'logsBloom',
-  'extraData',
-]
-
 interface IResponse {
   blockHeaders: IEthBlock[];
   from: string;
@@ -24,8 +16,16 @@ function* getLastestEthBlocksSaga() {
   try {
 
     const latestBlocks: IResponse = yield call(getLatestEthBlocks, 20);
+    const updatedBlocks = latestBlocks?.blockHeaders?.map((block) => ({
+      number: block.number,
+      hash: block.hash,
+      time: block.timestamp,
+      miner: block.miner,
+      transactions: block.transactionCount,
+      size: block.size + ' bytes',
+    }))
 
-    return yield put(fetchLatestBlocksSuccess(latestBlocks?.blockHeaders));
+    return yield put(fetchLatestBlocksSuccess(updatedBlocks));
   } catch (ex) {
     console.error(ex);
     return yield put(fetchLatestBlocksError());
