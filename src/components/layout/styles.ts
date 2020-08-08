@@ -6,4 +6,5 @@ export const StyledLayout = styled.div<{ padding: number }>`
   padding: ${p => `0 ${p?.padding}px`};
   font-family: 'Helvetica Neue', sans-serif;
   height: 100%;
+  width: 100%;
 `;

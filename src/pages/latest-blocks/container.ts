@@ -3,12 +3,20 @@ import { accessors } from '../../modules/constants';
 import { IApplicationState } from '../../modules/reducer';
 import { TSymbols } from '../../modules/interfaces';
 import { selectSymbol } from '../../modules/actions';
+import moment from 'moment';
 
 export const mapStateToProps = (state: IApplicationState) => {
   const symbol: TSymbols = state?.currentSymbol;
+  const isLoading: boolean = state?.isLoading;
+  const hasError: boolean = state?.hasError;
+
+  const cols = accessors?.[symbol] ? accessors?.[symbol] : accessors.default;
   const blocks = state?.blocks?.map(block => {
     return Object.entries(block)?.reduce((newBlock, [key, val]) => {
-      if (accessors.includes(key)) {
+      if (cols.includes(key)) {
+        if (key === 'time') {
+          val = moment.unix(val).fromNow(true);
+        }
         return {
           ...newBlock,
           [key]: val,
@@ -21,7 +29,9 @@ export const mapStateToProps = (state: IApplicationState) => {
 
   return {
     symbol,
-    blocks
+    blocks,
+    isLoading,
+    hasError,
   };
 };
 

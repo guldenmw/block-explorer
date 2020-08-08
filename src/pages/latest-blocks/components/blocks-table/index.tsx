@@ -1,16 +1,18 @@
 import React, { FC } from 'react';
 import { StyledTables } from './styles';
-import { ITableBlock } from '../../../../modules/interfaces';
+import { ITableBlock, TSymbols } from '../../../../modules/interfaces';
 import { accessors } from '../../../../modules/constants';
 import { useHistory } from 'react-router';
 
 
 interface IProps {
+  symbol: TSymbols;
   blocks: ITableBlock[];
 }
 
 const BlocksTable: FC<IProps> = (props) => {
   const {
+    symbol,
     blocks,
   } = props;
 
@@ -19,6 +21,8 @@ const BlocksTable: FC<IProps> = (props) => {
   const handleHashClick = (blockHash: string) => {
     history.push(`/block/${blockHash}`);
   }
+
+  const cols = accessors[symbol] ? accessors[symbol] : accessors.default;
 
   return (
     <StyledTables>
@@ -32,7 +36,7 @@ const BlocksTable: FC<IProps> = (props) => {
       <table className={'table'}>
         <thead>
           <tr >
-            {accessors?.map((col, index) => (
+            {cols?.map((col, index) => (
               <th key={index}>
                 {col}
               </th>
@@ -42,7 +46,7 @@ const BlocksTable: FC<IProps> = (props) => {
         <tbody>
           {blocks.map((block, index) => (
             <tr key={index}>
-              {accessors?.map((key, index) => (
+              {cols?.map((key, index) => (
                 <td
                   key={index}
                   className={key === 'hash' ? 'hash-col' : ''}

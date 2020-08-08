@@ -1,11 +1,21 @@
 
-export const accessors = [
-  'height',
-  'hash',
-  'time',
-  'miner',
-  'size',
-]
+export const accessors = {
+  eth: [
+    'number',
+    'hash',
+    'time',
+    'miner',
+    'transactions',
+    'size',
+  ],
+  default: [
+    'height',
+    'hash',
+    'time',
+    'miner',
+    'size',
+  ]
+}
 
 export const pools = {
   "coinbase_tags" : {

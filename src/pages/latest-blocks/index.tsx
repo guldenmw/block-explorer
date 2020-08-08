@@ -5,11 +5,14 @@ import BlocksTable from './components/blocks-table';
 import { connect } from 'react-redux';
 import { mapDispatchToProps, mapStateToProps } from './container';
 import { ITableBlock, TSymbols } from '../../modules/interfaces';
+import Loader from '../../components/loader';
 
 
 interface IProps {
   symbol: TSymbols;
   blocks: Array<ITableBlock>;
+  isLoading: boolean;
+  hasError: boolean;
   selectSymbol: (symbol: TSymbols) => void;
   fetchLatestBlocks: (symbol: TSymbols) => void;
 }
@@ -18,6 +21,8 @@ const LatestBlocks: FC<Partial<IProps>> = (props) => {
   const {
     symbol,
     blocks,
+    isLoading,
+    hasError,
     selectSymbol,
     fetchLatestBlocks,
   } = props;
@@ -28,8 +33,16 @@ const LatestBlocks: FC<Partial<IProps>> = (props) => {
 
   return (
     <StyledLatestBlocks>
-      <Sidebar symbol={symbol} selectSymbol={selectSymbol}/>
-      <BlocksTable blocks={blocks}/>
+      {isLoading && (
+        <Loader/>
+      )}
+      {!isLoading && !hasError && (
+        <>
+          <Sidebar symbol={symbol} selectSymbol={selectSymbol}/>
+          <BlocksTable symbol={symbol} blocks={blocks}/>
+        </>
+      )}
+
     </StyledLatestBlocks>
   );
 };
