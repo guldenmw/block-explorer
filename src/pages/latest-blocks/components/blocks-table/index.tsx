@@ -4,6 +4,7 @@ import { ITableBlock, TSymbols } from '../../../../modules/interfaces';
 import { connect } from 'react-redux';
 import { mapDispatchToProps, mapStateToProps } from './container';
 import { accessors } from '../../../../modules/constants';
+import { useHistory } from 'react-router';
 
 interface IComponentProps {
   symbol?: TSymbols;
@@ -23,9 +24,15 @@ const BlocksTable: FC<TProps> = (props) => {
     fetchLatestBlocks,
   } = props;
 
+  const history = useHistory();
+
   useEffect(() => {
     fetchLatestBlocks(symbol);
   }, []);
+
+  const handleHashClick = (blockHash: string) => {
+    history.push(`/block/${blockHash}`);
+  }
 
   return (
     <StyledTables>
@@ -50,7 +57,11 @@ const BlocksTable: FC<TProps> = (props) => {
           {blocks.map((block, index) => (
             <tr key={index}>
               {accessors?.map((key, index) => (
-                <td key={index}>
+                <td
+                  key={index}
+                  className={key === 'hash' ? 'hash-col' : ''}
+                  onClick={key === 'hash' ? e => handleHashClick(block?.hash) : null}
+                >
                   {block[key]}
                 </td>
               ))}

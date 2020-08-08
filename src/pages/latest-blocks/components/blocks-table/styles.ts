@@ -42,16 +42,18 @@ export const StyledTables = styled.div<any>`
   }
   
   .table {
-    thead {
-      tr {
-        th {
-          border-top: none;
-          text-transform: capitalize;
-          padding-left: 0;
-        }
-        td {
-          padding-left: 0;
-        }
+    thead tr th {
+      border-top: none;
+      text-transform: capitalize;
+      padding-left: 0;
+    }
+    tbody tr {
+      td {
+        padding-left: 0;
+      }
+      .hash-col {
+        color: blue;
+        cursor: pointer;
       }
     }
   }
