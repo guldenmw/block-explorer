@@ -2,20 +2,20 @@ import React, { FC } from 'react';
 import { StyledLayout } from './styles';
 
 interface IProps {
-  margin?: number;
+  padding?: number;
 }
 
 const Layout: FC<IProps> = (props) => {
-  const { margin, children } = props;
+  const { padding, children } = props;
   return (
-    <StyledLayout margin={margin}>
+    <StyledLayout padding={padding}>
       {children}
     </StyledLayout>
   );
 };
 
 Layout.defaultProps = {
-  margin: 150,
+  padding: 180,
 };
 
 export default Layout;
