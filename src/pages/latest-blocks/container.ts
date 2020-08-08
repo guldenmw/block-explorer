@@ -1,31 +1,14 @@
 import { fetchLatestBlocksStart } from '../../modules/actions';
-import { tableColumns } from '../../modules/constants';
 import { IApplicationState } from '../../modules/reducer';
 import { TSymbols } from '../../modules/interfaces';
 import { selectSymbol } from '../../modules/actions';
-import moment from 'moment';
 
 export const mapStateToProps = (state: IApplicationState) => {
   const symbol: TSymbols = state?.currentSymbol;
   const isLoading: boolean = state?.isLoading;
   const hasError: boolean = state?.hasError;
 
-  const cols = tableColumns?.[symbol] ? tableColumns?.[symbol] : tableColumns.default;
-  const blocks = state?.blocks?.map(block => {
-    return Object.entries(block)?.reduce((newBlock, [key, val]) => {
-      if (cols.includes(key)) {
-        if (key === 'time') {
-          val = moment.unix(val).fromNow(true);
-        }
-        return {
-          ...newBlock,
-          [key]: val,
-        }
-      }
-      return newBlock;
-    }, {});
-  })
-
+  const blocks = state?.blocks;
 
   return {
     symbol,

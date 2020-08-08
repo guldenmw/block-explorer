@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { StyledTables } from './styles';
 import { ITableBlock, TSymbols } from '../../../../modules/interfaces';
 import { tableColumns } from '../../../../modules/constants';
@@ -15,11 +15,14 @@ const BlocksTable: FC<IProps> = (props) => {
     symbol,
     blocks,
   } = props;
+  const [searchValue, setSearchValue] = useState<string>('');
 
   const history = useHistory();
 
   const handleHashClick = (blockHash: string) => {
-    history.push(`/block/${blockHash}`);
+    if (blockHash) {
+      history.push(`/block/${blockHash}`);
+    }
   }
 
   const cols = tableColumns[symbol] ? tableColumns[symbol] : tableColumns.default;
@@ -28,9 +31,20 @@ const BlocksTable: FC<IProps> = (props) => {
     <StyledTables>
       <div className={'search'}>
         <i className="fas fa-search"/>
-        <input className={'search-bar form-control'} type={'text'} name={'search'} placeholder={'Search for a block hash'}>
-        </input>
-        <button type="button" className={'search-button btn btn-primary'}>Search</button>
+        <input
+          className={'search-bar form-control'}
+          type={'text'}
+          name={'search'}
+          placeholder={'Search for a block hash'}
+          onChange={e => setSearchValue(e?.target?.value)}
+        />
+        <button
+          type="button"
+          className={'search-button btn btn-primary'}
+          onClick={e => handleHashClick(searchValue)}
+        >
+          Search
+        </button>
       </div>
       <h3 className={'table-title'}>Latest blocks</h3>
       <table className={'table'}>

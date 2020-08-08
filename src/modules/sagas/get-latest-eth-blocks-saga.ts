@@ -2,6 +2,7 @@ import { call, put } from 'redux-saga/effects';
 import { fetchLatestBlocksError, fetchLatestBlocksSuccess } from '../actions';
 import { IEthBlock } from '../interfaces';
 import getLatestEthBlocks from '../api/get-latest-eth-blocks';
+import moment from 'moment';
 
 
 interface IResponse {
@@ -19,7 +20,7 @@ function* getLastestEthBlocksSaga() {
     const updatedBlocks = latestBlocks?.blockHeaders?.map((block) => ({
       number: block.number,
       hash: block.hash,
-      time: block.timestamp,
+      time: moment.unix(Number(block.timestamp)).fromNow(true),
       miner: block.miner,
       transactions: block.transactionCount,
       size: block.size + ' bytes',

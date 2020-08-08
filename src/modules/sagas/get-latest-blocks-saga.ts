@@ -7,6 +7,7 @@ import getTransactions from '../api/get-transactions';
 import { pools } from '../constants';
 import { IApplicationState } from '../reducer';
 import getLastestEthBlocksSaga from './get-latest-eth-blocks-saga';
+import moment from 'moment';
 
 
 /**
@@ -53,7 +54,10 @@ function* getLastestBtcBchBlocksSaga() {
       const minerName = pools.payout_addresses[minerAddress]?.name;
 
       updatedBlocks.push({
-        ...block,
+        height: block.height,
+        hash: block.hash,
+        time: moment.unix(block.time).fromNow(true),
+        size: `${block.size} bytes`,
         miner: minerName ? minerName : 'Unknown',
       })
     }
