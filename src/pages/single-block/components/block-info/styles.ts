@@ -5,15 +5,18 @@ export const StyledBlockInfo = styled.section`
   padding-bottom: 1rem;
 
   .block-details-row {
-    display: flex;
+    display: grid;
+    grid: auto / 2fr 5fr;
+    padding: 0.8rem 0;
+    border-bottom: solid 1px #DFE3EB;
     //flex: 1;
     
     .entry-key {
-      flex: 1;
     }
 
     .entry-val {
-      flex: 3;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 `;
