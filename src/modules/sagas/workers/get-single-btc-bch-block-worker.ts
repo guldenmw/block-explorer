@@ -42,6 +42,7 @@ const parseTransaction = (symbol: TSymbol, tx: IFullTransaction): ITransaction =
   const totalValue = value - fee;
 
   return {
+    coinbase: tx?.inputs?.[0]?.coinbase,
     hash: tx?.txid,
     to,
     from: tx?.inputs?.[0]?.address,

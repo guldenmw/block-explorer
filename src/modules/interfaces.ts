@@ -160,6 +160,7 @@ export interface IFullEthTransaction {
 }
 
 export interface ITransaction {
+  coinbase?: boolean;
   hash: string;
   to: Array<{
     address: string;
