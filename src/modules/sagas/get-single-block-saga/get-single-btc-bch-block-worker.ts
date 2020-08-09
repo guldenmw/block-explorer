@@ -37,7 +37,7 @@ const parseBlock = (block: INewBlock, latestBlockNumber: number): IBlock => {
 
 const parseTransaction = (symbol: TSymbol, tx: IFullTransaction): ITransaction => {
   const to = tx?.outputs?.map(({ address, value, spent }) => ({
-      address,
+      address: address?.replace('bitcoincash:', ''),
       spent,
       value: `${value/satoshi} ${symbol.toUpperCase()}`
   }
