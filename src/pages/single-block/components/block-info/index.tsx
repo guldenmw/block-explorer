@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { StyledBlockInfo } from './styles';
-import { IBlock } from '../../../../modules/interfaces';
+import { IBlock, IEthBlock } from '../../../../modules/interfaces';
 
 interface IProps {
-  currentBlock: IBlock;
+  currentBlock: IBlock | IEthBlock | {};
 }
 
 const BlockInfo: FC<IProps> = (props) => {

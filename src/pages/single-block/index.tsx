@@ -1,47 +1,65 @@
 import React, { FC, useEffect } from 'react';
 import { StyledSingleBlock } from './styles';
 import BlockInfo from './components/block-info';
-import { IBlock, TSymbol } from '../../modules/interfaces';
-import { mapDispatchToProps, mapStateToProps } from './container';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import checkSymbol from '../../modules/api/check-symbol';
+import EthereumIcon from '../../components/icons/ethereum-icon';
+import BitcoinIcon from '../../components/icons/bitcoin-icon';
+import BitcoinCashIcon from '../../components/icons/bitcoin-cash-icon';
+import Loader from '../../components/loader';
+import { fetchSingleBlockStart, selectSymbol } from '../../modules/actions';
+import { IApplicationState } from '../../modules/reducer';
 
-interface IComponentProps {
+
+const icon = {
+  'btc': <BitcoinIcon/>,
+  'eth': <EthereumIcon/>,
+  'bch': <BitcoinCashIcon/>
+}
+
+interface IProps {
   blockHash: string;
 }
 
-interface IContainerProps {
-  symbol: TSymbol;
-  currentBlock: IBlock;
-  selectSymbol: (symbol: TSymbol) => void;
-  fetchBlock: (blockHash: string) => void;
-}
-
-type IProps = IComponentProps & Partial<IContainerProps>;
-
 const SingleBlock: FC<IProps> = (props) => {
   const {
-    symbol,
     blockHash,
-    currentBlock,
-    selectSymbol,
-    fetchBlock,
   } = props;
+
+  const dispatch = useDispatch();
+  const {
+    isLoading,
+    hasError,
+    currentSymbol,
+    currentBlock
+  } = useSelector((state: IApplicationState) => state)
 
   // Figure out what currency we have to search for.
   useEffect(() => {
-    checkSymbol(blockHash).then((result) => selectSymbol(result));
+    checkSymbol(blockHash).then((result) => dispatch(selectSymbol(result)));
   }, []);
 
   useEffect(() => {
-    if (symbol) {
-      fetchBlock(blockHash);
+    if (currentSymbol) {
+      dispatch(fetchSingleBlockStart(blockHash));
     }
-  }, [blockHash, symbol]);
+  }, [blockHash, currentSymbol]);
 
   return (
     <StyledSingleBlock>
-      <h2 className={'page-title'}>Block Explorer</h2>
+      {isLoading && (
+        <Loader/>
+      )}
+      {!isLoading && !hasError && (
+        <>
+          <header className={'page-header'}>
+            {icon[currentSymbol]}
+            <h2 className={'page-title'}>
+              <span className={'symbol-title'}>{currentSymbol.toUpperCase()}</span> / Block
+            </h2>
+          </header>
+        </>
+      )}
       <BlockInfo currentBlock={currentBlock}/>
       {/*<Transactions transactions={currentBlock?.transactions}/>*/}
     </StyledSingleBlock>
@@ -50,4 +68,4 @@ const SingleBlock: FC<IProps> = (props) => {
 
 SingleBlock.defaultProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleBlock);
+export default SingleBlock;
