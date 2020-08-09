@@ -9,10 +9,24 @@ export const StyledLayout = styled.div`
   align-items: center;
   
   .layout-header {
+    display: flex;
     width: 100%;
     background-color: #121d33;
-    flex: 0 0 4rem;
     margin-bottom: 2rem;
+    flex: 0 0 4rem;
+    align-items: center;
+    padding-left: 3.5rem;
+    
+    a {
+      :hover {
+        text-decoration: none;
+      }
+    }
+    
+    h2 {
+      margin: 0;
+      color: #fff;
+    }
   }
   
   .layout-body {
