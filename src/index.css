@@ -113,6 +113,15 @@ a:hover {
   margin-left: -60px;
 }
 
+input {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #353F52;
+  text-align: left;
+}
+
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }

@@ -32,7 +32,6 @@ const Sidebar: FC<IProps> = (props) => {
 
   return (
     <StyledSidebar>
-      <h3 className={'page-title'}>Block Explorer</h3>
       <div className={'currency-options'}>
       {currencyOptions.map((option, index) => (
         <CurrencyOption

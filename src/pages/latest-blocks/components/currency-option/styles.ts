@@ -14,6 +14,10 @@ export const StyledOption = styled.div<any>`
     background-color: #ececec;
   }
   
+  &:first-child {
+    margin-top: 0;
+  }
+  
   .option-details {
     display: flex;
     flex-direction: column;

@@ -6,10 +6,6 @@ export const StyledSidebar = styled.aside`
   flex-direction: column;
   min-width: 300px;
 
-  .page-title {
-    padding-bottom: 20px;
-  }
-  
   .currency-options {
     display: flex;
     flex-direction: column;
