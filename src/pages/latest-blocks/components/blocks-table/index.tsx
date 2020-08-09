@@ -29,7 +29,7 @@ const BlocksTable: FC<IProps> = (props) => {
 
   return (
     <StyledTables>
-      <div className={'search'}>
+      <header className={'search'}>
         <i className="fas fa-search"/>
         <input
           className={'search-bar form-control'}
@@ -45,34 +45,41 @@ const BlocksTable: FC<IProps> = (props) => {
         >
           Search
         </button>
-      </div>
-      <h3 className={'table-title'}>Latest blocks</h3>
-      <table className={'table'}>
-        <thead>
-          <tr >
-            {cols?.map((col, index) => (
-              <th key={index}>
-                {col}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {blocks.map((block, index) => (
-            <tr key={index}>
-              {cols?.map((key, index) => (
-                <td
-                  key={index}
-                  className={key === 'hash' ? 'hash-col' : ''}
-                  onClick={key === 'hash' ? e => handleHashClick(block?.hash) : null}
-                >
-                  {block[key]}
-                </td>
+      </header>
+      <div className={'table-section-body'}>
+        <h3 className={'table-title'}>Latest blocks</h3>
+        <div className={'table-container'}>
+          <table className={'table'} width="100%">
+            <thead>
+              <tr >
+                {cols?.map((col, index) => (
+                  <th key={index}>
+                    {col}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {blocks.map((block, index) => (
+                <tr key={index}>
+                  {cols?.map((key, index) => (
+                    <td
+                      key={index}
+                      className={key === 'hash' ? 'hash-col' : ''}
+                    >
+                      {key === 'hash' ? (
+                        <a href={`/block/${block?.hash}`}>{block[key]}</a>
+                      ) : (
+                        block[key]
+                      )}
+                    </td>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </StyledTables>
   );
 };

@@ -1,14 +1,10 @@
 import React, { FC } from 'react';
 import { StyledLayout } from './styles';
 
-interface IProps {
-  padding?: number;
-}
-
-const Layout: FC<IProps> = (props) => {
-  const { padding, children } = props;
+const Layout: FC = (props) => {
+  const { children } = props;
   return (
-    <StyledLayout padding={padding}>
+    <StyledLayout>
       <section className={'layout-body'}>
         {children}
       </section>
@@ -16,8 +12,6 @@ const Layout: FC<IProps> = (props) => {
   );
 };
 
-Layout.defaultProps = {
-  padding: 180,
-};
+Layout.defaultProps = {};
 
 export default Layout;

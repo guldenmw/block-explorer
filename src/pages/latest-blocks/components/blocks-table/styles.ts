@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 
 
-export const StyledTables = styled.div<any>`
+export const StyledTables = styled.section`
   display: flex;
   flex-direction: column;
   flex: 1;
+  
+  .table-section-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: scroll;
+  }
   
   .search {
     display: flex;
@@ -41,19 +48,33 @@ export const StyledTables = styled.div<any>`
     padding: 40px 0;
   }
   
+  .table-container {
+    overflow-x: auto;
+  }
+
   .table {
+    border-collapse: collapse;
+    
+    th, td {
+      padding-right: 3rem;
+    }
+
     thead tr th {
       border-top: none;
       text-transform: capitalize;
-      padding-left: 0;
+      border-bottom: solid 1px #DFE3EB;
+      padding: 0.8rem 0;
     }
     tbody tr {
       td {
-        padding-left: 0;
+        border-bottom: solid 1px #DFE3EB;
+        padding: 0.8rem 3rem 0.8rem 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       .hash-col {
-        color: blue;
-        cursor: pointer;
+        overflow-x: hidden;
+        max-width: 300px;
       }
     }
   }

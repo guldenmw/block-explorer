@@ -12,10 +12,6 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
-@-ms-viewport {
-  width: device-width;
-}
-
 article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
@@ -23,15 +19,14 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
 body {
   height: 100%;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    sans-serif;
+  font-family: 'Inter', sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
-  color: #212529;
+  color: #353F52;
   text-align: left;
   background-color: #fff;
 }
@@ -81,4 +76,15 @@ h5, .h5 {
 
 h6, .h6 {
   font-size: 1rem;
+}
+
+a {
+  color: #0C6CF2;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #0d3578;
 }
