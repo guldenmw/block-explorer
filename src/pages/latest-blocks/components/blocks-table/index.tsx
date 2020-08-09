@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { StyledTables } from './styles';
 import { ITableBlock, TSymbol } from '../../../../modules/interfaces';
 import { tableColumns } from '../../../../modules/constants';

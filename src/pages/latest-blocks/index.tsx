@@ -5,7 +5,6 @@ import BlocksTable from './components/blocks-table';
 import { connect } from 'react-redux';
 import { mapDispatchToProps, mapStateToProps } from './container';
 import { ITableBlock, TSymbol } from '../../modules/interfaces';
-import Loader from '../../components/loader';
 
 
 interface IProps {

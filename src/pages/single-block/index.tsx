@@ -77,11 +77,12 @@ const SingleBlock: FC<IProps> = (props) => {
           <section className={'transactions'}>
             <h3>Transactions</h3>
 
-            {transactions?.map(tx => (
+            {transactions?.map((tx, index) => (
               <Transaction
                 symbol={currentSymbol}
                 transaction={tx}
                 confirmations={currentBlock?.confirmations}
+                key={index}
               />
             ))}
           </section>

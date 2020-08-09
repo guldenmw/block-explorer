@@ -45,8 +45,8 @@ const Transaction: FC<IProps> = (props) => {
       <div className={'tx-output'}>
         <span className={'tx-time'}>{transaction?.time}</span>
 
-        {transaction?.to?.map(tx => (
-          <div className={'tx-to-item'}>
+        {transaction?.to?.map((tx, index) => (
+          <div className={'tx-to-item'} key={index}>
             <span className={'output-address'}>
               {tx?.address ? tx?.address : 'OP_RETURN'}
             </span>
