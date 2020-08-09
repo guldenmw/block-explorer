@@ -2,14 +2,16 @@ import { call, put } from 'redux-saga/effects';
 import { fetchSingleBlockError, fetchSingleBlockSuccess } from '../../actions';
 import {
   IBlock,
-  IEthTransaction,
-  IFullEthTransaction,
-  INewBlock
+  IFullTransaction,
+  INewBlock,
+  ITransaction,
+  TSymbol
 } from '../../interfaces';
 import moment from 'moment';
 import getLatestBlockNumber from '../../api/get-latest-block-number';
 import getBlockByHash from '../../api/get-block-by-hash';
 import { satoshi } from '../../constants';
+import getTransactions from '../../api/get-transactions';
 
 
 const parseBlock = (block: INewBlock, latestBlockNumber: number): IBlock => {
@@ -33,27 +35,36 @@ const parseBlock = (block: INewBlock, latestBlockNumber: number): IBlock => {
   }
 }
 
-const parseTransaction = (tx: IFullEthTransaction): IEthTransaction => {
+const parseTransaction = (symbol: TSymbol, tx: IFullTransaction): ITransaction => {
+  const to = tx?.outputs?.map(({ address, value }) => ({ address, value: `${value/satoshi} ${symbol.toUpperCase()}` }));
+  const fee = tx?.fee/satoshi;
+  const value = tx?.inputs?.[0]?.value/satoshi;
+  const totalValue = value - fee;
+
   return {
-    hash: tx?.blockHash,
-    to: tx?.to,
-    from: tx?.from,
-    time: moment.unix(Number(tx?.timestamp)).toISOString(),
-    fee: Number(tx?.gasLimit) * Number(tx?.gasPrice),
+    hash: tx?.txid,
+    to,
+    from: tx?.inputs?.[0]?.address,
+    time: moment.unix(Number(tx?.time)).toISOString(),
+    fee: `${fee} ${symbol.toUpperCase()}`,
+    value: `${value} ${symbol.toUpperCase()}`,
+    totalValue: `${totalValue} ${symbol.toUpperCase()}`,
   }
 }
 
-function* getSingleBtcBchBlockWorker(action, symbol) {
+function* getSingleBtcBchBlockWorker(action, symbol: TSymbol) {
   try {
     const blockHash = action?.data;
 
     const latestBlockNumber = yield call(getLatestBlockNumber, symbol);
-
     const result = yield call(getBlockByHash, symbol, blockHash)
+    const blockDetails = result?.data?.[blockHash];
 
-    const block = parseBlock(result?.data?.[blockHash]?.block, latestBlockNumber);
-    const rawTxs: IFullEthTransaction[] = result?.transactions;
-    const transactions: IEthTransaction[] = rawTxs?.map(tx => parseTransaction(tx));
+    const block = parseBlock(blockDetails?.block, latestBlockNumber);
+    const txIds: string = blockDetails?.transactions?.slice(0, 5).join(',');
+    const rawTransactions: IFullTransaction[] = yield call(getTransactions, symbol, txIds);
+
+    const transactions: ITransaction[] = rawTransactions?.map(tx => parseTransaction(symbol, tx));
 
     return yield put(fetchSingleBlockSuccess({ block, transactions }));
   } catch (ex) {

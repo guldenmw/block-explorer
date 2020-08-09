@@ -1,6 +1,6 @@
-import { call, fork, put, select } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { fetchLatestBlocksError, fetchLatestBlocksSuccess } from '../../actions';
-import { IFullBlock, ITransaction } from '../../interfaces';
+import { IFullBlock, IFullTransaction } from '../../interfaces';
 import getLatestBlockNumber from '../../api/get-latest-block-number';
 import getBlocksByHeights from '../../api/get-blocks-by-height';
 import getTransactions from '../../api/get-transactions';
@@ -39,7 +39,7 @@ function* getLastestBtcBchBlocksWorker() {
     // Fetch the first transaction of each block by building
     // a comma separated string of the combined transaction ids
     const txIds = latestBlocks?.map(block => block?.tx?.[0]);
-    const transactions: ITransaction[] = yield call(getTransactions, symbol, txIds?.join(','));
+    const transactions: IFullTransaction[] = yield call(getTransactions, symbol, txIds?.join(','));
 
     // Add all the transactions and the block miner to each block
     let updatedBlocks = [];

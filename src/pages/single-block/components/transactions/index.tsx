@@ -12,7 +12,7 @@ const Transactions: FC<IProps> = (props) => {
 
   return (
     <div>
-      {transactions?.map(tx => `${tx.txid}\n`)}
+      {/*{transactions?.map(tx => `${tx.txid}\n`)}*/}
     </div>
   );
 };

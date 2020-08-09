@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 import getEthBlockByHash from '../../api/get-eth-block-by-hash';
 import { fetchSingleBlockError, fetchSingleBlockSuccess } from '../../actions';
-import { IEthBlock, IEthTransaction, IFullEthBlock, IFullEthTransaction } from '../../interfaces';
+import { IEthBlock, ITransaction, IFullEthBlock, IFullEthTransaction } from '../../interfaces';
 import moment from 'moment';
 import getLatestBlockNumber from '../../api/get-latest-block-number';
 import { wei } from '../../constants';
@@ -31,13 +31,19 @@ const parseBlock = (block: IFullEthBlock, latestBlockNumber: string): IEthBlock 
   }
 }
 
-const parseTransaction = (tx: IFullEthTransaction): IEthTransaction => {
+const parseTransaction = (tx: IFullEthTransaction): ITransaction => {
   return {
     hash: tx?.blockHash,
-    to: tx?.to,
+    to: [
+      {
+        address: tx?.to,
+        value: tx?.value,
+      }
+    ],
     from: tx?.from,
     time: moment.unix(Number(tx?.timestamp)).toISOString(),
-    fee: Number(tx?.gasLimit) * Number(tx?.gasPrice),
+    fee: `${Number(tx?.gasLimit) * Number(tx?.gasPrice)} ETH`,
+    value: `${Number(tx?.value)/wei} ETH`,
   }
 }
 
@@ -51,7 +57,7 @@ function* getSingleEthBlockWorker(action) {
 
     const block = parseBlock(result?.header, latestBlockNumber);
     const rawTxs: IFullEthTransaction[] = result?.transactions;
-    const transactions: IEthTransaction[] = rawTxs?.map(tx => parseTransaction(tx));
+    const transactions: ITransaction[] = rawTxs?.slice(0, 5)?.map(tx => parseTransaction(tx));
 
     return yield put(fetchSingleBlockSuccess({ block, transactions }));
   } catch (ex) {

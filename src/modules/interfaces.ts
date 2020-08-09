@@ -59,35 +59,30 @@ export interface ITableBlock {
 
 }
 
-export interface IColumn {
-  Header: string;
-  accessor: string;
-}
-
-export interface ITransaction {
+export interface IFullTransaction {
   txid: string;
-  size: 290;
-  version: 2;
-  locktime: 0;
-  fee: 0;
-  inputs: {
-    coinbase: true;
+  size: number;
+  version: number;
+  locktime: number;
+  fee: number;
+  inputs: Array<{
+    coinbase: boolean;
     txid: string;
-    output: 4294967295;
+    output: number;
     sigscript: string;
-    sequence: 4294967295;
-    pkscript: null;
-    value: null;
-    address: null;
+    sequence: number;
+    pkscript: number;
+    value: number;
+    address: string;
     witness: string[];
-  }[];
-  outputs: {
+  }>;
+  outputs: Array<{
     address: string;
     pkscript: string;
     value: number;
     spent: boolean;
     spender: boolean;
-  }[];
+  }>;
   block: {
     height: number;
     position: number;
@@ -164,12 +159,17 @@ export interface IFullEthTransaction {
   internalTransactions?: []
 }
 
-export interface IEthTransaction {
+export interface ITransaction {
   hash: string;
-  to: string;
+  to: Array<{
+    address: string;
+    value: string;
+  }>;
   from: string;
   time: string;
-  fee: number;
+  fee: string;
+  value: string;
+  totalValue?: string;
 }
 
 export interface INewBlock {
