@@ -39,13 +39,13 @@ export interface IBlock {
   height: number;
   miner: string;
   numberOfTransactions: number;
-  difficulty: number;
+  difficulty: string;
   merkleRoot: string;
   version: string;
-  bits: number;
+  bits: string;
   weight: string;
   size: string;
-  nonce: number;
+  nonce: string;
   transactionVolume: string;
   blockReward: string
   feeReward: string;

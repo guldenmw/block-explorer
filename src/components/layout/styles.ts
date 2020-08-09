@@ -13,7 +13,6 @@ export const StyledLayout = styled.div`
     display: flex;
     width: 100%;
     background-color: #121d33;
-    margin-bottom: 2rem;
     flex: 0 0 4rem;
     align-items: center;
     padding-left: 3.5rem;
