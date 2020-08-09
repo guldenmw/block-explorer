@@ -10,15 +10,25 @@ export const StyledLoader = styled.div<any>`
 
   .loader {
     border: 10px solid #fff;
-    border-top: 10px solid #3498db;
+    background-color: rgba(52, 152, 219, 1);
     border-radius: 50%;
     width: 120px;
     height: 120px;
-    animation: spin 1.5s linear infinite;
+    animation: grow 1.3s linear infinite;
   }
   
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  @keyframes grow {
+    0% {
+      width: 20px;
+      height: 20px;
+    }
+    50% {
+      background-color: rgba(52, 152, 219, 0.7);
+    }
+    100% {
+      width: 120px;
+      height: 120px;
+      background-color: rgba(52, 152, 219, 0);
+    }
   }
 `;

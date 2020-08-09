@@ -31,7 +31,7 @@ export const StyledSearchBar = styled.header`
 
   .search-button {
     height: 100%;
-    margin: 0 10px;
+    margin-left: 10px;
     min-width: 160px;
     font-size: 18px;
     font-weight: bold;

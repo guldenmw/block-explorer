@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const StyledTables = styled.section`
   display: flex;
   flex-direction: column;
-  flex: 1;
+  width: 60rem;
   
   .table-section-body {
     display: flex;
