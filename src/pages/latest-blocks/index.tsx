@@ -33,16 +33,8 @@ const LatestBlocks: FC<Partial<IProps>> = (props) => {
 
   return (
     <StyledLatestBlocks>
-      {isLoading && (
-        <Loader/>
-      )}
-      {!isLoading && !hasError && (
-        <>
-          <Sidebar symbol={symbol} selectSymbol={selectSymbol}/>
-          <BlocksTable symbol={symbol} blocks={blocks}/>
-        </>
-      )}
-
+      <Sidebar symbol={symbol} selectSymbol={selectSymbol}/>
+      <BlocksTable symbol={symbol} blocks={blocks} isLoading={isLoading}/>
     </StyledLatestBlocks>
   );
 };

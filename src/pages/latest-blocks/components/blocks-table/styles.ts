@@ -40,9 +40,10 @@ export const StyledTables = styled.section`
         padding: 0.8rem 3rem 0.8rem 0;
         text-overflow: ellipsis;
         white-space: nowrap;
+        overflow-x: hidden;
+        max-width: 200px;
       }
       .hash-col {
-        overflow-x: hidden;
         max-width: 300px;
       }
     }

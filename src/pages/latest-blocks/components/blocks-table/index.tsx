@@ -4,17 +4,20 @@ import { ITableBlock, TSymbol } from '../../../../modules/interfaces';
 import { tableColumns } from '../../../../modules/constants';
 import { useHistory } from 'react-router';
 import SearchBar from '../search-bar';
+import Loader from '../../../../components/loader';
 
 
 interface IProps {
   symbol: TSymbol;
   blocks: ITableBlock[];
+  isLoading: boolean;
 }
 
 const BlocksTable: FC<IProps> = (props) => {
   const {
     symbol,
     blocks,
+    isLoading,
   } = props;
 
   const history = useHistory();
@@ -32,7 +35,11 @@ const BlocksTable: FC<IProps> = (props) => {
       <SearchBar onClick={handleHashClick}/>
       <div className={'table-section-body'}>
         <h3 className={'table-title'}>Latest blocks</h3>
-        <div className={'table-container'}>
+        {isLoading && (
+          <Loader/>
+        )}
+        {!isLoading && (
+          <div className={'table-container'}>
           <table className={'table'} width="100%">
             <thead>
               <tr >
@@ -63,6 +70,7 @@ const BlocksTable: FC<IProps> = (props) => {
             </tbody>
           </table>
         </div>
+        )}
       </div>
     </StyledTables>
   );
