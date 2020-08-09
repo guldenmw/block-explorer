@@ -1,10 +1,14 @@
 import React, { FC } from 'react';
 import { StyledLayout } from './styles';
 
-const Layout: FC = (props) => {
-  const { children } = props;
+interface IProps {
+  hideOverflow?: boolean;
+}
+
+const Layout: FC<IProps> = (props) => {
+  const { hideOverflow, children } = props;
   return (
-    <StyledLayout>
+    <StyledLayout hideOverflow={hideOverflow}>
       <header className={'layout-header'}>
         <a href={'/'}>
           <h2>Block Explorer</h2>
@@ -17,6 +21,8 @@ const Layout: FC = (props) => {
   );
 };
 
-Layout.defaultProps = {};
+Layout.defaultProps = {
+  hideOverflow: true
+};
 
 export default Layout;

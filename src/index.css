@@ -19,7 +19,8 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
 body {
   height: 100%;
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', sans-serif;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

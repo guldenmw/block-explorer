@@ -58,7 +58,7 @@ const BlocksTable: FC<IProps> = (props) => {
                       key={index}
                       className={key === 'hash' ? 'hash-col' : ''}
                     >
-                      {key === 'hash' ? (
+                      {key === 'hash' || key === 'height' || key === 'number' ? (
                         <a href={`/block/${block?.hash}`}>{block[key]}</a>
                       ) : (
                         block[key]

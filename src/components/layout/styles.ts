@@ -9,6 +9,7 @@ export const StyledLayout = styled.div`
   align-items: center;
   
   .layout-header {
+    position: fixed;
     display: flex;
     width: 100%;
     background-color: #121d33;
@@ -16,6 +17,8 @@ export const StyledLayout = styled.div`
     flex: 0 0 4rem;
     align-items: center;
     padding-left: 3.5rem;
+    height: 68px;
+    z-index: 1;
     
     a {
       :hover {
@@ -34,5 +37,7 @@ export const StyledLayout = styled.div`
     padding: 0 1.5rem;
     display: flex;
     flex: 1;
+    margin-top: 7rem;
+    overflow: ${p => p.hideOverflow ? 'hidden' : 'auto'};
   }
 `;

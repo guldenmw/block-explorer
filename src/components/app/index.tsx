@@ -15,7 +15,7 @@ function Index() {
     <Router>
       <Switch>
         <Route path={'/block/:blockHash'} render={(props) => (
-          <Layout>
+          <Layout hideOverflow={false}>
             <SingleBlock blockHash={props?.match?.params?.blockHash}/>
           </Layout>
         )}>
