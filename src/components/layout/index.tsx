@@ -5,6 +5,7 @@ const Layout: FC = (props) => {
   const { children } = props;
   return (
     <StyledLayout>
+      <header className={'layout-header'}/>
       <section className={'layout-body'}>
         {children}
       </section>

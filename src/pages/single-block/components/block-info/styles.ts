@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const StyledBlockInfo = styled.section`
   padding-bottom: 1rem;
+  width: 75%;
 
   .block-details-row {
     display: grid;

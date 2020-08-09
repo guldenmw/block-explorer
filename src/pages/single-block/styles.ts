@@ -4,7 +4,8 @@ import styled from 'styled-components';
 export const StyledSingleBlock = styled.div<any>`
   width: 100%;
 
-  .page-header {    margin-bottom: 2rem;
+  .page-header {
+    margin-bottom: 3rem;
     
     .header-title {
       display: flex;
@@ -20,6 +21,10 @@ export const StyledSingleBlock = styled.div<any>`
   }
   
   .transactions {
-    margin-top: 3rem;
+    margin-top: 5rem;
+    
+    h3 {
+      margin-bottom: 4rem;
+    }
   }
 `;
