@@ -13,28 +13,28 @@ export const StyledTransaction = styled.div<any>`
   
   .light {
     color: #677185;
-  }
+    flex: 1;
+ }
   
   .tx-hash, .tx-time {
     padding-bottom: 10px;
   }
   
   .info-container {
-    display: grid;
-    grid: auto / 1fr 3fr;
+    display: flex;
     overflow: hidden;
   }
   
   .tx-input {
     display: flex;
     flex-direction: column;
-    flex: 1;
     justify-content: space-between;
     
     .tx-hash-addr {
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      flex: 3;
 
       span {
         overflow: hidden;
@@ -61,7 +61,6 @@ export const StyledTransaction = styled.div<any>`
   .tx-output {
     display: flex;
     flex-direction: column;
-    flex: 2;
     
     .tx-to-item {
       display: flex;

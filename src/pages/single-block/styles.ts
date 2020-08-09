@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const StyledSingleBlock = styled.div<any>`
   width: 100%;
+  margin-top: 2.8rem;
 
   .page-header {
     margin-bottom: 3rem;

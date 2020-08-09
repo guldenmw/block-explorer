@@ -32,11 +32,11 @@ export const StyledLayout = styled.div`
   }
   
   .layout-body {
-    width: 80rem;
+    max-width: 80rem;
     padding: 0 1.5rem;
     display: flex;
     flex: 1;
-    margin-top: 7rem;
+    margin-top: 4.2rem;
     overflow: ${p => p.hideOverflow ? 'hidden' : 'auto'};
   }
 `;
