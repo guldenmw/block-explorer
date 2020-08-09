@@ -1,5 +1,5 @@
 import { IApplicationState } from '../../modules/reducer';
-import { fetchSingleBlockStart } from '../../modules/actions';
+import { fetchSingleBlockStart, selectSymbol } from '../../modules/actions';
 import { TSymbol } from '../../modules/interfaces';
 
 export const mapStateToProps = (state: IApplicationState) => {
@@ -15,5 +15,8 @@ export const mapStateToProps = (state: IApplicationState) => {
 export const mapDispatchToProps = dispatch => ({
   fetchBlock(data) {
     dispatch(fetchSingleBlockStart(data));
+  },
+  selectSymbol(data) {
+    dispatch(selectSymbol(data));
   },
 });

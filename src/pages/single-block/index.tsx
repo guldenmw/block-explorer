@@ -4,6 +4,7 @@ import BlockInfo from './components/block-info';
 import { IBlock, TSymbol } from '../../modules/interfaces';
 import { mapDispatchToProps, mapStateToProps } from './container';
 import { connect } from 'react-redux';
+import checkSymbol from '../../modules/api/check-symbol';
 
 interface IComponentProps {
   blockHash: string;
@@ -12,6 +13,7 @@ interface IComponentProps {
 interface IContainerProps {
   symbol: TSymbol;
   currentBlock: IBlock;
+  selectSymbol: (symbol: TSymbol) => void;
   fetchBlock: (blockHash: string) => void;
 }
 
@@ -22,12 +24,20 @@ const SingleBlock: FC<IProps> = (props) => {
     symbol,
     blockHash,
     currentBlock,
+    selectSymbol,
     fetchBlock,
   } = props;
 
+  // Figure out what currency we have to search for.
   useEffect(() => {
-    fetchBlock(blockHash);
-  }, [blockHash]);
+    checkSymbol(blockHash).then((result) => selectSymbol(result));
+  }, []);
+
+  useEffect(() => {
+    if (symbol) {
+      fetchBlock(blockHash);
+    }
+  }, [blockHash, symbol]);
 
   return (
     <StyledSingleBlock>
