@@ -13,37 +13,6 @@ export const StyledTables = styled.section`
     overflow-y: scroll;
   }
   
-  .search {
-    display: flex;
-    align-items: center;
-    position: relative; 
-    
-    .fas {
-      position: absolute;
-      padding: 20px;
-      pointer-events: none;
-      left: 0;
-      font-size: 18px;
-    }
-    
-    input  {
-      padding: 25px;
-      padding-left: 50px;
-    }
-
-    .search-bar {
-      flex: 1;
-    }
-  
-    .search-button {
-      height: 100%;
-      margin: 0 10px;
-      min-width: 160px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-  }
-  
   .table-title {
     padding: 40px 0;
   }

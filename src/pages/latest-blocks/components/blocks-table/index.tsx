@@ -3,6 +3,7 @@ import { StyledTables } from './styles';
 import { ITableBlock, TSymbol } from '../../../../modules/interfaces';
 import { tableColumns } from '../../../../modules/constants';
 import { useHistory } from 'react-router';
+import SearchBar from '../search-bar';
 
 
 interface IProps {
@@ -15,7 +16,6 @@ const BlocksTable: FC<IProps> = (props) => {
     symbol,
     blocks,
   } = props;
-  const [searchValue, setSearchValue] = useState<string>('');
 
   const history = useHistory();
 
@@ -29,23 +29,7 @@ const BlocksTable: FC<IProps> = (props) => {
 
   return (
     <StyledTables>
-      <header className={'search'}>
-        <i className="fas fa-search"/>
-        <input
-          className={'search-bar form-control'}
-          type={'text'}
-          name={'search'}
-          placeholder={'Search for a block hash'}
-          onChange={e => setSearchValue(e?.target?.value)}
-        />
-        <button
-          type="button"
-          className={'search-button btn btn-primary'}
-          onClick={e => handleHashClick(searchValue)}
-        >
-          Search
-        </button>
-      </header>
+      <SearchBar onClick={handleHashClick}/>
       <div className={'table-section-body'}>
         <h3 className={'table-title'}>Latest blocks</h3>
         <div className={'table-container'}>
