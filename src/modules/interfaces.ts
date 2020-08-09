@@ -38,17 +38,17 @@ export interface IBlock {
   timestamp: string;
   height: number;
   miner: string;
-  transactionCount: number;
+  numberOfTransactions: number;
   difficulty: number;
-  merkle: string;
+  merkleRoot: string;
   version: string;
   bits: number;
   weight: string;
   size: string;
   nonce: number;
-  volume: string;
-  reward: string
-  fee: string;
+  transactionVolume: string;
+  blockReward: string
+  feeReward: string;
 }
 
 export interface ITableBlock {
@@ -125,20 +125,20 @@ export interface IEthBlock {
   timestamp: string;
   height: string;
   miner: string;
-  transactionCount: number;
-  internalTransactionCount: number;
+  numberOfTransactions: number;
+  numberOfInternalTransactions: number;
   difficulty: string;
   totalDifficulty: string;
   size: string;
   nonce: string;
   sha3Uncles: string;
+  numberOfUncles: number;
   gasLimit: string;
   gasUsed: string;
   blockReward: string;
   staticReward: string;
-  totalFees: string;
+  feeReward: string;
   totalUncleReward: string;
-  uncles: number;
 }
 
 export interface IFullEthTransaction {

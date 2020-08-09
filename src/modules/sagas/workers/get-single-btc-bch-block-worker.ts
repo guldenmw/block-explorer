@@ -21,17 +21,17 @@ const parseBlock = (block: INewBlock, latestBlockNumber: number): IBlock => {
     timestamp: block?.time,
     height: block?.id,
     miner: block?.guessed_miner,
-    transactionCount: block?.transaction_count,
+    numberOfTransactions: block?.transaction_count,
     difficulty: block?.difficulty,
-    merkle: block?.merkle_root,
+    merkleRoot: block?.merkle_root,
     version: block?.version_hex,
     bits: block?.bits,
     weight: `${block?.weight} WU`,
     size: `${block?.size} bytes`,
     nonce: block?.nonce,
-    volume: `${block?.input_total/satoshi} BTC`,
-    reward: `${block?.generation/satoshi} BTC`,
-    fee: `${block?.fee_total/satoshi} BTC`,
+    transactionVolume: `${block?.input_total/satoshi} BTC`,
+    blockReward: `${block?.generation/satoshi} BTC`,
+    feeReward: `${block?.fee_total/satoshi} BTC`,
   }
 }
 
