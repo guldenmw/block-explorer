@@ -73,20 +73,20 @@ const SingleBlock: FC<IProps> = (props) => {
             </div>
             <span>Block at depth {currentBlock?.height} in the {currencyName} blockchain</span>
           </header>
+          <BlockInfo currentBlock={currentBlock}/>
+          <section className={'transactions'}>
+            <h3>Transactions</h3>
+
+            {transactions?.map(tx => (
+              <Transaction
+                symbol={currentSymbol}
+                transaction={tx}
+                confirmations={currentBlock?.confirmations}
+              />
+            ))}
+          </section>
         </>
       )}
-      <BlockInfo currentBlock={currentBlock}/>
-      <section className={'transactions'}>
-        <h3>Transactions</h3>
-
-        {transactions?.map(tx => (
-          <Transaction
-            symbol={currentSymbol}
-            transaction={tx}
-            confirmations={currentBlock?.confirmations}
-          />
-        ))}
-      </section>
     </StyledSingleBlock>
   );
 };

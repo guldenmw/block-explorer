@@ -5,7 +5,6 @@ export const StyledSearchBar = styled.header`
   display: flex;
   align-items: center;
   position: relative; 
-  width: 787px;
   
   .fas {
     position: absolute;

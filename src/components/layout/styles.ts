@@ -30,7 +30,7 @@ export const StyledLayout = styled.div`
   }
   
   .layout-body {
-    max-width: 75rem;
+    width: 80rem;
     padding: 0 1.5rem;
     display: flex;
     flex: 1;
