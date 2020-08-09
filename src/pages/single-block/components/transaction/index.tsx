@@ -5,10 +5,11 @@ import ArrowIcon from '../../../../components/icons/arrow-icon';
 
 interface IProps {
   transaction: ITransaction;
+  confirmations: number;
 }
 
 const Transaction: FC<IProps> = (props) => {
-  const { transaction } = props;
+  const { transaction, confirmations } = props;
 
   return (
     <StyledTransaction>
@@ -48,13 +49,25 @@ const Transaction: FC<IProps> = (props) => {
               {tx?.address ? tx?.address : 'OP_RETURN'}
             </span>
 
-            <span>{tx?.value}</span>
+            <span>
+              {tx?.value} { !!tx?.address && (
+                <i className={`tooltip fas fa-globe ${tx?.spent && 'spent'}`}>
+                  <span className={'tooltiptext'}>{tx?.spent ? 'Spent' : 'Unspent'}</span>
+                </i>
+              )}
+            </span>
           </div>
         ))}
 
         <div className={'tx-total'}>
           <span>{transaction?.value}</span>
         </div>
+
+        {confirmations <= 5 && (
+          <div className={'tx-confirmations'}>
+            <span>{confirmations} Confirmations</span>
+          </div>
+        )}
 
       </div>
     </StyledTransaction>

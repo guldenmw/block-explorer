@@ -80,7 +80,7 @@ const SingleBlock: FC<IProps> = (props) => {
         <h3>Transactions</h3>
 
         {transactions?.map(tx => (
-          <Transaction transaction={tx}/>
+          <Transaction transaction={tx} confirmations={currentBlock?.confirmations}/>
         ))}
       </section>
     </StyledSingleBlock>

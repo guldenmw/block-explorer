@@ -1,8 +1,8 @@
 import { TSymbol } from '../../interfaces';
 import { fork, select } from 'redux-saga/effects';
 import { IApplicationState } from '../../reducer';
-import getSingleEthBlockWorker from '../workers/get-single-eth-block-worker';
-import getSingleBtcBchBlockWorker from '../workers/get-single-btc-bch-block-worker';
+import getSingleEthBlockWorker from './get-single-eth-block-worker';
+import getSingleBtcBchBlockWorker from './get-single-btc-bch-block-worker';
 
 
 /**

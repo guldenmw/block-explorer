@@ -165,6 +165,7 @@ export interface ITransaction {
   to: Array<{
     address: string;
     value: string;
+    spent?: boolean;
   }>;
   from: string;
   time: string;

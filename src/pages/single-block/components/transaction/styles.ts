@@ -63,25 +63,40 @@ export const StyledTransaction = styled.div<any>`
     flex-direction: column;
     flex: 2;
     
-    .tx-time, .tx-total {
-      align-self: flex-end;
-    }
-    
     .tx-to-item {
       display: flex;
       justify-content: space-between;
+    
+      .output-address {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+      .fa-globe { color: #339f7b; }
+      .fa-globe.spent { color: #ea5b50; }
     }
     
-    .output-address {
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .tx-time, .tx-total, .tx-confirmations {
+      align-self: flex-end;
     }
     
     .tx-total {
-      margin-top: 1rem;
-      padding: 4px;
       color: #00875a;
       background-color: #d1f0db;
+    }
+    
+    .tx-confirmations {
+      color: #0c6cf2;
+      background: #bbdbfc;
+    }
+    
+    .tx-total, .tx-confirmations {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 130px;
+      margin-top: 1rem;
+      padding: 4px;
       border-radius: 4px;
     }
   }

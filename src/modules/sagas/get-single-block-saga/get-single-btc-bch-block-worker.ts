@@ -17,7 +17,7 @@ import getTransactions from '../../api/get-transactions';
 const parseBlock = (block: INewBlock, latestBlockNumber: number): IBlock => {
   return {
     hash: block?.hash,
-    confirmations: block?.id - latestBlockNumber + 1,
+    confirmations: latestBlockNumber - block?.id + 1,
     timestamp: block?.time,
     height: block?.id,
     miner: block?.guessed_miner,
@@ -36,9 +36,15 @@ const parseBlock = (block: INewBlock, latestBlockNumber: number): IBlock => {
 }
 
 const parseTransaction = (symbol: TSymbol, tx: IFullTransaction): ITransaction => {
-  const to = tx?.outputs?.map(({ address, value }) => ({ address, value: `${value/satoshi} ${symbol.toUpperCase()}` }));
+  const to = tx?.outputs?.map(({ address, value, spent }) => ({
+      address,
+      spent,
+      value: `${value/satoshi} ${symbol.toUpperCase()}`
+  }
+  ));
   const fee = tx?.fee/satoshi;
-  const value = tx?.inputs?.[0]?.value/satoshi;
+  const valueRaw = tx?.outputs?.reduce((acc, output) => acc + output?.value, 0);
+  const value = valueRaw/satoshi;
   const totalValue = value - fee;
 
   return {
@@ -47,7 +53,7 @@ const parseTransaction = (symbol: TSymbol, tx: IFullTransaction): ITransaction =
     to,
     from: tx?.inputs?.[0]?.address,
     time: moment.unix(Number(tx?.time)).toISOString(),
-    fee: `${fee} ${symbol.toUpperCase()}`,
+    fee: `${fee > 0 ? fee : '0.00000000'} ${symbol.toUpperCase()}`,
     value: `${value} ${symbol.toUpperCase()}`,
     totalValue: `${totalValue} ${symbol.toUpperCase()}`,
   }
