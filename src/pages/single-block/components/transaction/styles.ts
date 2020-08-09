@@ -37,10 +37,14 @@ export const StyledTransaction = styled.div<any>`
         text-overflow: ellipsis;
       }
     }
+    
+    .coinbase {
+      color: #00875A;
+    }
   }
   
   .tx-arrow {
-    margin-top: 20px;
+    margin-top: 25px;
     margin-left: 25px;
     svg {
       fill: #349E7B;

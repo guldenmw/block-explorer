@@ -9,7 +9,9 @@ const Layout: FC<IProps> = (props) => {
   const { padding, children } = props;
   return (
     <StyledLayout padding={padding}>
-      {children}
+      <section className={'layout-body'}>
+        {children}
+      </section>
     </StyledLayout>
   );
 };
