@@ -17,7 +17,7 @@ export interface IApplicationState {
   isLoading: boolean;
   hasError: boolean;
   currentBlock: IBlock | IEthBlock | {};
-  transactions: ITransaction[] | IFullEthTransaction[];
+  transactions: ITransaction[];
 }
 
 const initialState: IApplicationState = {

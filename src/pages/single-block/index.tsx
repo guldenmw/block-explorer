@@ -9,6 +9,7 @@ import BitcoinCashIcon from '../../components/icons/bitcoin-cash-icon';
 import Loader from '../../components/loader';
 import { fetchSingleBlockStart, selectSymbol } from '../../modules/actions';
 import { IApplicationState } from '../../modules/reducer';
+import Transaction from './components/transaction';
 
 
 const icon = {
@@ -31,7 +32,8 @@ const SingleBlock: FC<IProps> = (props) => {
     isLoading,
     hasError,
     currentSymbol,
-    currentBlock
+    currentBlock,
+    transactions,
   } = useSelector((state: IApplicationState) => state)
 
   // Figure out what currency we have to search for.
@@ -61,7 +63,13 @@ const SingleBlock: FC<IProps> = (props) => {
         </>
       )}
       <BlockInfo currentBlock={currentBlock}/>
-      {/*<Transactions transactions={currentBlock?.transactions}/>*/}
+      <section>
+        <h3>Transactions</h3>
+
+        {transactions?.map(tx => (
+          <Transaction transaction={tx}/>
+        ))}
+      </section>
     </StyledSingleBlock>
   );
 };

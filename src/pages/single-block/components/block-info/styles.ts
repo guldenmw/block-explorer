@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-export const StyledBlockInfo = styled.div<any>`
+export const StyledBlockInfo = styled.section`
   .block-details-row {
     display: flex;
     //flex: 1;
