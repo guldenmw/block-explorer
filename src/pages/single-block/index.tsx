@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { StyledSingleBlock } from './styles';
 import BlockInfo from './components/block-info';
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,6 +47,16 @@ const SingleBlock: FC<IProps> = (props) => {
     }
   }, [blockHash, currentSymbol]);
 
+  const currencyName = useMemo(() => {
+    let symbol = 'Bitcoin';
+    if (currentSymbol === 'eth') {
+      symbol = 'Ethereum';
+    } else if (currentSymbol === 'bch') {
+      symbol = 'Bitcoin Cash';
+    }
+    return symbol;
+  }, [currentSymbol]);
+
   return (
     <StyledSingleBlock>
       {isLoading && (
@@ -55,15 +65,18 @@ const SingleBlock: FC<IProps> = (props) => {
       {!isLoading && !hasError && (
         <>
           <header className={'page-header'}>
-            {icon[currentSymbol]}
-            <h2 className={'page-title'}>
-              <span className={'symbol-title'}>{currentSymbol.toUpperCase()}</span> / Block
-            </h2>
+            <div className={'header-title'}>
+              {icon[currentSymbol]}
+              <h2 className={'page-title'}>
+                <span className={'symbol-title'}>{currentSymbol.toUpperCase()}</span> / Block
+              </h2>
+            </div>
+            <span>Block at depth {currentBlock?.height} in the {currencyName} blockchain</span>
           </header>
         </>
       )}
       <BlockInfo currentBlock={currentBlock}/>
-      <section>
+      <section className={'transactions'}>
         <h3>Transactions</h3>
 
         {transactions?.map(tx => (

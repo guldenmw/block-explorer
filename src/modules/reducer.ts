@@ -8,7 +8,7 @@ import {
   FETCH_SINGLE_BLOCK_ERROR,
 } from './actions';
 
-import { IBlock, IEthBlock, IFullEthTransaction, ITableBlock, ITransaction, TSymbol } from './interfaces';
+import { IBlock, IEthBlock, ITableBlock, ITransaction, TSymbol } from './interfaces';
 
 
 export interface IApplicationState {
@@ -16,7 +16,7 @@ export interface IApplicationState {
   blocks: ITableBlock[];
   isLoading: boolean;
   hasError: boolean;
-  currentBlock: IBlock | IEthBlock | {};
+  currentBlock: IBlock | IEthBlock | any;
   transactions: ITransaction[];
 }
 
