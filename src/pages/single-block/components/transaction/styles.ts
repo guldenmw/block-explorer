@@ -70,10 +70,24 @@ export const StyledTransaction = styled.div<any>`
       .output-address {
         overflow: hidden;
         text-overflow: ellipsis;
+        white-space: nowrap;
       }
       
-      .fa-globe { color: #339f7b; }
-      .fa-globe.spent { color: #ea5b50; }
+      .tx-value-container {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        
+        .tx-value {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          padding-right: 0.5rem;
+        }
+      
+        .fa-globe { color: #339f7b; }
+        .fa-globe.spent { color: #ea5b50; }
+      }
     }
     
     .tx-time, .tx-total, .tx-confirmations {

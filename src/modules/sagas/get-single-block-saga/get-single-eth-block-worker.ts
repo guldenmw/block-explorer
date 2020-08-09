@@ -32,17 +32,19 @@ const parseBlock = (block: IFullEthBlock, latestBlockNumber: string): IEthBlock 
 }
 
 const parseTransaction = (tx: IFullEthTransaction): ITransaction => {
+  const fee = Number(tx?.gasLimit) * Number(tx?.gasPrice)/wei;
+
   return {
     hash: tx?.blockHash,
     to: [
       {
         address: tx?.to,
-        value: tx?.value,
+        value: `${Number(tx?.value)/wei} ETH`,
       }
     ],
     from: tx?.from,
     time: moment.unix(Number(tx?.timestamp)).toISOString(),
-    fee: `${Number(tx?.gasLimit) * Number(tx?.gasPrice)} ETH`,
+    fee: `${fee > 0 ? fee : '0.00000000'} ETH`,
     value: `${Number(tx?.value)/wei} ETH`,
   }
 }

@@ -1,15 +1,16 @@
 import React, { FC } from 'react';
 import { StyledTransaction } from './styles';
-import { ITransaction } from '../../../../modules/interfaces';
+import { ITransaction, TSymbol } from '../../../../modules/interfaces';
 import ArrowIcon from '../../../../components/icons/arrow-icon';
 
 interface IProps {
+  symbol: TSymbol;
   transaction: ITransaction;
   confirmations: number;
 }
 
 const Transaction: FC<IProps> = (props) => {
-  const { transaction, confirmations } = props;
+  const { symbol, transaction, confirmations } = props;
 
   return (
     <StyledTransaction>
@@ -43,19 +44,27 @@ const Transaction: FC<IProps> = (props) => {
 
       <div className={'tx-output'}>
         <span className={'tx-time'}>{transaction?.time}</span>
+
         {transaction?.to?.map(tx => (
           <div className={'tx-to-item'}>
             <span className={'output-address'}>
               {tx?.address ? tx?.address : 'OP_RETURN'}
             </span>
 
-            <span>
-              {tx?.value} { !!tx?.address && (
-                <i className={`tooltip fas fa-globe ${tx?.spent && 'spent'}`}>
-                  <span className={'tooltiptext'}>{tx?.spent ? 'Spent' : 'Unspent'}</span>
-                </i>
-              )}
-            </span>
+            {symbol !== 'eth' && (
+              <div className={'tx-value-container'}>
+                <span className={'tx-value'}>
+                  {tx?.value}
+                </span>
+
+                { !!tx?.address && (
+                  <i className={`tooltip fas fa-globe ${tx?.spent && 'spent'}`}>
+                    <span className={'tooltiptext'}>{tx?.spent ? 'Spent' : 'Unspent'}</span>
+                  </i>
+                )}
+              </div>
+            )}
+
           </div>
         ))}
 
