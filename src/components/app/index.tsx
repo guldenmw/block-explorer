@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import LatestBlocks from '../../pages/latest-blocks';
 import SingleBlock from '../../pages/single-block';
-import PageNotFound from '../../pages/page-not-found';
+import ErrorPage from '../../pages/error-page';
 import Layout from '../layout';
 
 
@@ -27,7 +27,7 @@ function Index() {
         </Route>
         <Route path="*">
           <Layout>
-            <PageNotFound/>
+            <ErrorPage/>
           </Layout>
         </Route>
       </Switch>
