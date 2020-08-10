@@ -24,7 +24,7 @@ const LatestBlocks: FC = () => {
 
   useEffect(() => {
     dispatch(fetchLatestBlocksStart(currentSymbol));
-  }, [currentSymbol]);
+  }, [currentSymbol, dispatch]);
 
   const handleSelectSymbol = (currentSymbol: TSymbol) => {
     dispatch(selectSymbol(currentSymbol));

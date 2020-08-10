@@ -36,7 +36,7 @@ const SingleBlock: FC<IProps> = (props) => {
   // Figure out what currency we have to search for.
   useEffect(() => {
     checkSymbol(blockHash).then((result) => dispatch(selectSymbol(result)));
-  }, []);
+  }, [blockHash, dispatch]);
 
   // When we have figured out what currency the block belongs to
   // or the block hash changes, fetch the block at the given hash again.
@@ -44,7 +44,7 @@ const SingleBlock: FC<IProps> = (props) => {
     if (currentSymbol) {
       dispatch(fetchSingleBlockStart(blockHash));
     }
-  }, [blockHash, currentSymbol]);
+  }, [blockHash, currentSymbol, dispatch]);
 
   return (
     <>

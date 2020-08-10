@@ -38,7 +38,7 @@ const CurrentBlock: FC<IProps> = (props) => {
       symbol = 'Bitcoin Cash';
     }
     return symbol;
-  }, [symbol]);
+  }, []);
 
   return (
     <>

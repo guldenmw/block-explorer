@@ -10,7 +10,7 @@ import getLastestBtcBchBlocksWorker from './get-latest-btc-bch-blocks-worker';
 /**
  * Decide which worker to call based on current symbol
  */
-function* getLastestBlocksSaga(action) {
+function* getLastestBlocksSaga() {
   const symbol: TSymbol = yield select((state: IApplicationState) => state?.currentSymbol);
   if (symbol === 'eth') {
     yield fork(getLastestEthBlocksWorker);

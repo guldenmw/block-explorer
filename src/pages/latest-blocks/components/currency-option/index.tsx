@@ -31,7 +31,7 @@ const CurrencyOption: FC<IProps> = (props) => {
   }, [option]);
 
   return (
-    <StyledOption className={className} onClick={e => onClick(option?.symbol)}>
+    <StyledOption className={className} onClick={() => onClick(option?.symbol)}>
       {option?.icon}
       <div className={'option-details'}>
         <strong className={'currency-name'}>{option?.name}</strong>

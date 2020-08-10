@@ -15,8 +15,7 @@ export const StyledSearchBar = styled.header`
   }
   
   input  {
-    padding: 0.8rem;
-    padding-left: 3.125rem;
+    padding: 0.8rem 0.8rem 0.8rem 3.125rem;
     border: solid 1px #DFE3EB;
     border-radius: 5px;
     
