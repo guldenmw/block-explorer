@@ -3,18 +3,17 @@ import { IBlock, TSymbol } from '../../interfaces';
 
 
 /**
- * API wrapper that fetches a single block with the provided hash
+ * API wrapper that fetches the latest BTC or BCH blocks
  */
-const getBtcBchBlockByHash = async (
+const getLatestBtcBchBlocks = async (
   symbol: TSymbol,
-  blockHash: string,
   method: string = 'GET'
 ): Promise<IBlock[]> => {
   const smbl = symbol === 'btc' ? 'bitcoin' : 'bitcoin-cash';
-  let url = `https://api.blockchair.com/${smbl}/dashboards/block/${blockHash}`;
+  let url = `https://api.blockchair.com/${smbl}/blocks?limit=20`;
   const response = await fetch(url, { method });
   handleResponse(response);
   return await response.json();
 };
 
-export default getBtcBchBlockByHash;
+export default getLatestBtcBchBlocks;

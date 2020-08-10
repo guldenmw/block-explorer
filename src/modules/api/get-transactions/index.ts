@@ -8,11 +8,11 @@ import { ITransaction, TSymbol } from '../../interfaces';
  * @param symbol - string representing the blockchain to target
  * @param transactionIds - comma separated string list of transaction ids eg 12345,67890
  */
-const index = async (symbol: TSymbol, transactionIds: string): Promise<ITransaction[]> => {
+const getTransactions = async (symbol: TSymbol, transactionIds: string): Promise<ITransaction[]> => {
   const url = `${apiBase}/haskoin-store/${symbol}/transactions?txids=${transactionIds}`;
   const response = await fetch(url);
   handleResponse(response);
   return await response.json();
 };
 
-export default index;
+export default getTransactions;
