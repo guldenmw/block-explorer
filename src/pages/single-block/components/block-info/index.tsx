@@ -8,14 +8,14 @@ const formatKeyForDisplay = (key) => {
 }
 
 interface IProps {
-  currentBlock: IBlock | IEthBlock | {};
+  block: IBlock | IEthBlock | any;
 }
 
 const BlockInfo: FC<IProps> = (props) => {
-  const { currentBlock } = props;
+  const { block } = props;
   return (
     <StyledBlockInfo>
-      {currentBlock && Object?.entries(currentBlock)?.map(([key, val], index) => {
+      {block && Object?.entries(block)?.map(([key, val], index) => {
         if (!['transactions', 'tx'].includes(key)) {
           return (
             <div className={'block-details-row'} key={index}>

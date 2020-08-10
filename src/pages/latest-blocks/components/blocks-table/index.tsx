@@ -2,8 +2,7 @@ import React, { FC } from 'react';
 import { StyledTables } from './styles';
 import { ITableBlock, TSymbol } from '../../../../modules/interfaces';
 import { tableColumns } from '../../../../modules/constants';
-import { useHistory } from 'react-router';
-import SearchBar from '../search-bar';
+import SearchBar from '../../../../components/search-bar';
 import Loader from '../../../../components/loader';
 
 
@@ -13,6 +12,10 @@ interface IProps {
   isLoading: boolean;
 }
 
+/**
+ * Component responsible for displaying the latest 20 blocks.
+ * TODO: Add pagination
+ */
 const BlocksTable: FC<IProps> = (props) => {
   const {
     symbol,
@@ -20,19 +23,11 @@ const BlocksTable: FC<IProps> = (props) => {
     isLoading,
   } = props;
 
-  const history = useHistory();
-
-  const handleHashClick = (blockHash: string) => {
-    if (blockHash) {
-      history.push(`/block/${blockHash}`);
-    }
-  }
-
   const cols = tableColumns[symbol] ? tableColumns[symbol] : tableColumns.default;
 
   return (
     <StyledTables>
-      <SearchBar onClick={handleHashClick}/>
+      <SearchBar/>
       <div className={'table-section-body'}>
         <h3 className={'table-title'}>Latest blocks</h3>
         {isLoading && (

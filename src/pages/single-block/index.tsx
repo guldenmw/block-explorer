@@ -1,22 +1,13 @@
-import React, { FC, useEffect, useMemo } from 'react';
+import React, { FC, useEffect } from 'react';
 import { StyledSingleBlock } from './styles';
-import BlockInfo from './components/block-info';
 import { useDispatch, useSelector } from 'react-redux';
 import checkSymbol from '../../modules/api/check-symbol';
-import EthereumIcon from '../../components/icons/ethereum-icon';
-import BitcoinIcon from '../../components/icons/bitcoin-icon';
-import BitcoinCashIcon from '../../components/icons/bitcoin-cash-icon';
 import Loader from '../../components/loader';
 import { fetchSingleBlockStart, selectSymbol } from '../../modules/actions';
 import { IApplicationState } from '../../modules/reducer';
-import Transaction from './components/transaction';
+import CurrentBlock from './components/current-block';
+import ErrorPage from '../error-page';
 
-
-const icon = {
-  'btc': <BitcoinIcon/>,
-  'eth': <EthereumIcon/>,
-  'bch': <BitcoinCashIcon/>
-}
 
 interface IProps {
   blockHash: string;
@@ -47,48 +38,29 @@ const SingleBlock: FC<IProps> = (props) => {
     }
   }, [blockHash, currentSymbol]);
 
-  const currencyName = useMemo(() => {
-    let symbol = 'Bitcoin';
-    if (currentSymbol === 'eth') {
-      symbol = 'Ethereum';
-    } else if (currentSymbol === 'bch') {
-      symbol = 'Bitcoin Cash';
-    }
-    return symbol;
-  }, [currentSymbol]);
-
   return (
-    <StyledSingleBlock>
+    <>
       {isLoading && (
         <Loader/>
       )}
       {!isLoading && !hasError && (
-        <>
-          <header className={'page-header'}>
-            <div className={'header-title'}>
-              {icon[currentSymbol]}
-              <h2 className={'page-title'}>
-                <span className={'symbol-title'}>{currentSymbol.toUpperCase()}</span> / Block
-              </h2>
-            </div>
-            <span>Block at depth {currentBlock?.height} in the {currencyName} blockchain</span>
-          </header>
-          <BlockInfo currentBlock={currentBlock}/>
-          <section className={'transactions'}>
-            <h3>Transactions</h3>
-
-            {transactions?.map((tx, index) => (
-              <Transaction
-                symbol={currentSymbol}
-                transaction={tx}
-                confirmations={currentBlock?.confirmations}
-                key={index}
-              />
-            ))}
-          </section>
-        </>
+        <StyledSingleBlock>
+          {!!Object.entries(currentBlock).length && (
+            <CurrentBlock
+              symbol={currentSymbol}
+              block={currentBlock}
+              transactions={transactions}
+            />
+          )}
+        </StyledSingleBlock>
       )}
-    </StyledSingleBlock>
+      {hasError && (
+        <ErrorPage
+          errorCode={'404'}
+          errorMessage={"Sorry! We couldn't find the block you are looking for."}
+        />
+      )}
+    </>
   );
 };
 

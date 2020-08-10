@@ -13,6 +13,9 @@ export const StyledBlockInfo = styled.section`
     //flex: 1;
     
     .entry-key {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .entry-val {

@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { StyledPageNotFound } from './styles';
+import SearchBar from '../../components/search-bar';
 
 
 interface IProps {
@@ -14,8 +15,11 @@ const ErrorPage: FC<IProps> = (props) => {
   const { errorCode, errorMessage } = props;
   return (
     <StyledPageNotFound>
-      <h1 className={'error-code'}>{errorCode}</h1>
-      <span className={'error-message'}>{errorMessage}</span>
+      <SearchBar/>
+      <div className={'error'}>
+        <h1 className={'error-code'}>{errorCode}</h1>
+        <span className={'error-message'}>{errorMessage}</span>
+      </div>
     </StyledPageNotFound>
   );
 };

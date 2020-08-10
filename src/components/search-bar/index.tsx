@@ -1,13 +1,21 @@
 import React, { FC, useState } from 'react';
 import { StyledSearchBar } from './styles';
+import { useHistory } from 'react-router';
 
-interface IProps {
-  onClick: (blockHash: string) => void;
-}
 
-const SearchBar: FC<IProps> = (props) => {
-  const { onClick } = props;
+/**
+ * Search bar responsible for searching for specific blocks by hash
+ */
+const SearchBar: FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
+
+  const history = useHistory();
+
+  const handleHashClick = () => {
+    if (searchValue) {
+      history.push(`/block/${searchValue}`);
+    }
+  }
 
   return (
     <StyledSearchBar>
@@ -22,7 +30,7 @@ const SearchBar: FC<IProps> = (props) => {
       <button
         type="button"
         className={'search-button btn btn-primary'}
-        onClick={e => onClick(searchValue)}
+        onClick={handleHashClick}
       >
         Search
       </button>

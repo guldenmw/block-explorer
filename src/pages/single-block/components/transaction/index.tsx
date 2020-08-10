@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { StyledTransaction } from './styles';
 import { ITransaction, TSymbol } from '../../../../modules/interfaces';
-import ArrowIcon from '../../../../components/icons/arrow-icon';
+import { ArrowIcon } from '../../../../components/icons';
 
 interface IProps {
   symbol: TSymbol;
