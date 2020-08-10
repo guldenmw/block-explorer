@@ -36,7 +36,7 @@ const GridTable: FC<IProps> = (props) => {
               className={`row ${key}-row`}
             >
               {key === 'hash' || key === 'height' || key === 'number' ? (
-                <a href={`/block-explorer/block/${block?.hash}`}>{block[key]}</a>
+                <a href={`/#/block/${block?.hash}`}>{block[key]}</a>
               ) : (
                 block[key]
               )}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
@@ -19,21 +19,17 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path={'/block-explorer/block/:blockHash'} render={(props) => (
+        <Route path={'/block/:blockHash'} render={(props) => (
           <Layout hideOverflow={false}>
             <SingleBlock blockHash={props?.match?.params?.blockHash}/>
           </Layout>
         )}>
         </Route>
 
-        <Route exact path={'/block-explorer/'}>
+        <Route exact path={'/'}>
           <Layout>
             <LatestBlocks/>
           </Layout>
-        </Route>
-
-        <Route exact path={'/'}>
-          <Redirect to={'/block-explorer/'}/>
         </Route>
 
         <Route path="*">
