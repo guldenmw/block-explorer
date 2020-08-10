@@ -16,4 +16,8 @@ export const StyledTables = styled.section`
   .table-title {
     padding: 2.5rem 0;
   }
+  
+  h4 {
+    text-align: center;
+  }
 `;

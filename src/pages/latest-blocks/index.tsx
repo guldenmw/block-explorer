@@ -32,19 +32,10 @@ const LatestBlocks: FC = () => {
 
   return (
     <>
-      {!hasError && (
-        <StyledLatestBlocks>
-          <Sidebar symbol={currentSymbol} selectSymbol={handleSelectSymbol}/>
-          <BlocksTable symbol={currentSymbol} blocks={blocks} isLoading={isLoading}/>
-        </StyledLatestBlocks>
-      )}
-
-      {hasError && (
-        <ErrorPage
-          errorCode={''}
-          errorMessage={'Could not load the latest blocks. Please try again later.'}
-        />
-      )}
+      <StyledLatestBlocks>
+        <Sidebar symbol={currentSymbol} selectSymbol={handleSelectSymbol}/>
+        <BlocksTable symbol={currentSymbol} blocks={blocks} isLoading={isLoading} hasError={hasError}/>
+      </StyledLatestBlocks>
     </>
   );
 };

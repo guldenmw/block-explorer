@@ -11,6 +11,7 @@ interface IProps {
   symbol: TSymbol;
   blocks: ITableBlock[];
   isLoading: boolean;
+  hasError: boolean;
 }
 
 /**
@@ -22,6 +23,7 @@ const BlocksTable: FC<IProps> = (props) => {
     symbol,
     blocks,
     isLoading,
+    hasError,
   } = props;
 
   return (
@@ -35,10 +37,15 @@ const BlocksTable: FC<IProps> = (props) => {
           <Loader/>
         )}
 
-        {!isLoading && (
+        {!isLoading && !hasError && (
           <GridTable symbol={symbol} blocks={blocks}/>
         )}
 
+        {hasError && (
+          <h4>
+            Could not load the latest blocks. Please try again later.
+          </h4>
+        )}
       </div>
     </StyledTables>
   );
