@@ -1,5 +1,5 @@
 import { handleResponse } from '../helpers';
-import { IBlock, TSymbol } from '../../interfaces';
+import { TSymbol } from '../../interfaces';
 
 
 /**
@@ -9,7 +9,7 @@ const getBtcBchBlockByHash = async (
   symbol: TSymbol,
   blockHash: string,
   method: string = 'GET'
-): Promise<IBlock[]> => {
+) => {
   const smbl = symbol === 'btc' ? 'bitcoin' : 'bitcoin-cash';
   let url = `https://api.blockchair.com/${smbl}/dashboards/block/${blockHash}`;
   const response = await fetch(url, { method });
