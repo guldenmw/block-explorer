@@ -1,46 +1,41 @@
 import React, { FC, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { StyledLatestBlocks } from './styles';
 import Sidebar from './components/sidebar';
 import BlocksTable from './components/blocks-table';
-import { mapDispatchToProps, mapStateToProps } from './container';
-import { ITableBlock, TSymbol } from '../../modules/interfaces';
+import { TSymbol } from '../../modules/interfaces';
 import ErrorPage from '../error-page';
+import { IApplicationState } from '../../modules/reducer';
+import { fetchLatestBlocksStart, selectSymbol } from '../../modules/actions';
 
-
-interface IProps {
-  symbol: TSymbol;
-  blocks: Array<ITableBlock>;
-  isLoading: boolean;
-  hasError: boolean;
-  selectSymbol: (symbol: TSymbol) => void;
-  fetchLatestBlocks: (symbol: TSymbol) => void;
-}
 
 /**
  * Page responsible for displaying the latest blocks of the
  * selected cryptocurrency option
  */
-const LatestBlocks: FC<Partial<IProps>> = (props) => {
+const LatestBlocks: FC = () => {
+  const dispatch = useDispatch();
   const {
-    symbol,
-    blocks,
+    currentSymbol,
     isLoading,
     hasError,
-    selectSymbol,
-    fetchLatestBlocks,
-  } = props;
+    blocks,
+  } = useSelector((state: IApplicationState) => state)
 
   useEffect(() => {
-    fetchLatestBlocks(symbol);
-  }, [symbol]);
+    dispatch(fetchLatestBlocksStart(currentSymbol));
+  }, [currentSymbol]);
+
+  const handleSelectSymbol = (currentSymbol: TSymbol) => {
+    dispatch(selectSymbol(currentSymbol));
+  }
 
   return (
     <>
       {!hasError && (
         <StyledLatestBlocks>
-          <Sidebar symbol={symbol} selectSymbol={selectSymbol}/>
-          <BlocksTable symbol={symbol} blocks={blocks} isLoading={isLoading}/>
+          <Sidebar symbol={currentSymbol} selectSymbol={handleSelectSymbol}/>
+          <BlocksTable symbol={currentSymbol} blocks={blocks} isLoading={isLoading}/>
         </StyledLatestBlocks>
       )}
 
@@ -56,4 +51,4 @@ const LatestBlocks: FC<Partial<IProps>> = (props) => {
 
 LatestBlocks.defaultProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(LatestBlocks) as typeof LatestBlocks;
+export default LatestBlocks;
