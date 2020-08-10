@@ -1,6 +1,6 @@
-import { handleResponse } from './helpers';
-import { apiBase } from './index';
-import { IBlock, TSymbol } from '../interfaces';
+import { handleResponse } from '../helpers';
+import { apiBase } from '../index';
+import { IBlock, TSymbol } from '../../interfaces';
 
 /**
  * API wrapper that fetches the all the blocks of the height values provided.

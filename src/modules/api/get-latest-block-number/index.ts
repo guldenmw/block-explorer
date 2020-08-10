@@ -1,12 +1,12 @@
-import { handleResponse } from './helpers';
-import { apiBase } from './index';
-import { ILatestBlock, TSymbol } from '../interfaces';
+import { handleResponse } from '../helpers';
+import { apiBase } from '../index';
+import { ILatestBlock, TSymbol } from '../../interfaces';
 
 /**
  * API wrapper used to fetch the latest block on
  * the provided symbols blockchain
  */
-const getLatestBlockNumber = async (symbol: TSymbol): Promise<ILatestBlock> => {
+const index = async (symbol: TSymbol): Promise<ILatestBlock> => {
   let url = `${apiBase}/haskoin-store/${symbol}/block/best?notx=true`;
   if (symbol === 'eth') {
     url = `${apiBase}/v2/eth/data/block/latest/number`
@@ -17,4 +17,4 @@ const getLatestBlockNumber = async (symbol: TSymbol): Promise<ILatestBlock> => {
   return symbol === 'eth' ? Number(responseJson?.number) : responseJson?.height;
 };
 
-export default getLatestBlockNumber;
+export default index;

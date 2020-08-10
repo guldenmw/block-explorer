@@ -1,8 +1,9 @@
 import { call, put } from 'redux-saga/effects';
-import { fetchLatestBlocksError, fetchLatestBlocksSuccess } from '../../actions';
-import { IFullEthBlock } from '../../interfaces';
-import getLatestEthBlocks from '../../api/get-latest-eth-blocks';
 import moment from 'moment';
+
+import { IFullEthBlock } from '../../interfaces';
+import { fetchLatestBlocksError, fetchLatestBlocksSuccess } from '../../actions';
+import { getLatestEthBlocks } from '../../api';
 
 
 interface IResponse {

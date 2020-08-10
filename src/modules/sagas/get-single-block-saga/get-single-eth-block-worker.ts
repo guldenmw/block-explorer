@@ -1,10 +1,10 @@
 import { call, put } from 'redux-saga/effects';
-import getEthBlockByHash from '../../api/get-eth-block-by-hash';
-import { fetchSingleBlockError, fetchSingleBlockSuccess } from '../../actions';
-import { IEthBlock, ITransaction, IFullEthBlock, IFullEthTransaction } from '../../interfaces';
 import moment from 'moment';
-import getLatestBlockNumber from '../../api/get-latest-block-number';
+
 import { wei } from '../../constants';
+import { IEthBlock, ITransaction, IFullEthBlock, IFullEthTransaction } from '../../interfaces';
+import { fetchSingleBlockError, fetchSingleBlockSuccess } from '../../actions';
+import { getLatestBlockNumber, getEthBlockByHash } from '../../api';
 
 
 const parseBlock = (block: IFullEthBlock, latestBlockNumber: string): IEthBlock => {

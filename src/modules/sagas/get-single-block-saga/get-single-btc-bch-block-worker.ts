@@ -1,5 +1,6 @@
 import { call, put } from 'redux-saga/effects';
-import { fetchSingleBlockError, fetchSingleBlockSuccess } from '../../actions';
+import { satoshi } from '../../constants';
+
 import {
   IBlock,
   IFullTransaction,
@@ -8,10 +9,12 @@ import {
   TSymbol
 } from '../../interfaces';
 import moment from 'moment';
-import getLatestBlockNumber from '../../api/get-latest-block-number';
-import getBlockByHash from '../../api/get-block-by-hash';
-import { satoshi } from '../../constants';
-import getTransactions from '../../api/get-transactions';
+import { fetchSingleBlockError, fetchSingleBlockSuccess } from '../../actions';
+import {
+  getLatestBlockNumber,
+  getBtcBchBlockByHash,
+  getTransactions,
+} from '../../api';
 
 
 const parseBlock = (block: INewBlock, latestBlockNumber: number): IBlock => {
@@ -64,7 +67,7 @@ function* getSingleBtcBchBlockWorker(action, symbol: TSymbol) {
     const blockHash = action?.data;
 
     const latestBlockNumber = yield call(getLatestBlockNumber, symbol);
-    const result = yield call(getBlockByHash, symbol, blockHash)
+    const result = yield call(getBtcBchBlockByHash, symbol, blockHash)
     const blockDetails = result?.data?.[blockHash];
 
     const block = parseBlock(blockDetails?.block, latestBlockNumber);

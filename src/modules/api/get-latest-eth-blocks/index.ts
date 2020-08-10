@@ -1,16 +1,16 @@
-import { handleResponse } from './helpers';
-import { apiBase } from './index';
-import { IBlock } from '../interfaces';
+import { handleResponse } from '../helpers';
+import { apiBase } from '../index';
+import { IBlock } from '../../interfaces';
 
 /**
  * API wrapper that fetches the latest Ethereum blocks according to the size provided
  * @param size - number of blocks to return
  */
-const getLatestEthBlocks = async (size: number): Promise<IBlock[]> => {
+const index = async (size: number): Promise<IBlock[]> => {
   const url = `${apiBase}/v2/eth/data/blocks?size=${size}`;
   const response = await fetch(url);
   handleResponse(response);
   return await response.json();
 };
 
-export default getLatestEthBlocks;
+export default index;

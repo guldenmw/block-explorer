@@ -1,12 +1,11 @@
 import { call, put, select } from 'redux-saga/effects';
-import { fetchLatestBlocksError, fetchLatestBlocksSuccess } from '../../actions';
-import { IFullBlock, IFullTransaction } from '../../interfaces';
-import getLatestBlockNumber from '../../api/get-latest-block-number';
-import getBlocksByHeights from '../../api/get-blocks-by-height';
-import getTransactions from '../../api/get-transactions';
-import { pools } from '../../constants';
-import { IApplicationState } from '../../reducer';
 import moment from 'moment';
+
+import { IApplicationState } from '../../reducer';
+import { pools } from '../../constants';
+import { IFullBlock, IFullTransaction } from '../../interfaces';
+import { fetchLatestBlocksError, fetchLatestBlocksSuccess } from '../../actions';
+import { getBlocksByHeights, getLatestBlockNumber, getTransactions } from '../../api';
 
 
 /**
