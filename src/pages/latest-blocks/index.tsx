@@ -4,7 +4,6 @@ import { StyledLatestBlocks } from './styles';
 import Sidebar from './components/sidebar';
 import BlocksTable from './components/blocks-table';
 import { TSymbol } from '../../modules/interfaces';
-import ErrorPage from '../error-page';
 import { IApplicationState } from '../../modules/reducer';
 import { fetchLatestBlocksStart, selectSymbol } from '../../modules/actions';
 
