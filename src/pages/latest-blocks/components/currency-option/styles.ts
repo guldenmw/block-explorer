@@ -7,7 +7,7 @@ export const StyledOption = styled.div<any>`
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
-  max-width: 220px;
+  max-width: 13.75rem;
   cursor: pointer;
 
   &.selected {

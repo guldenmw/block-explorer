@@ -16,7 +16,7 @@ export const StyledLayout = styled.div`
     flex: 0 0 4rem;
     align-items: center;
     padding-left: 3.5rem;
-    height: 68px;
+    height: 4.25rem;
     z-index: 1;
     
     a {

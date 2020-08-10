@@ -17,12 +17,12 @@ export const StyledPageNotFound = styled.div<any>`
     margin-top: 10rem;
     
     .error-code {
-      font-size: 100px;
+      font-size: 6.25rem;
       margin-bottom: 0;
     }
     
     .error-message {
-      font-size: 27px;
+      font-size: 1.7rem;
     }
   }
 `;

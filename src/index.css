@@ -97,7 +97,7 @@ a:hover {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px;
+  width: 7.5rem;
   background-color: #353f52;
   color: #fff;
   text-align: center;
@@ -111,7 +111,7 @@ a:hover {
   z-index: 1;
   bottom: 100%;
   left: 50%;
-  margin-left: -60px;
+  margin-left: -3.75rem;
 }
 
 input {

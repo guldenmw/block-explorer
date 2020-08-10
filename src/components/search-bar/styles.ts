@@ -8,7 +8,7 @@ export const StyledSearchBar = styled.header`
   
   .fas {
     position: absolute;
-    padding: 20px;
+    padding: 1.25rem;
     pointer-events: none;
     left: 0;
     font-size: 18px;
@@ -16,7 +16,7 @@ export const StyledSearchBar = styled.header`
   
   input  {
     padding: 0.8rem;
-    padding-left: 50px;
+    padding-left: 3.125rem;
     border: solid 1px #DFE3EB;
     border-radius: 5px;
     
@@ -32,7 +32,7 @@ export const StyledSearchBar = styled.header`
   .search-button {
     height: 100%;
     margin-left: 10px;
-    min-width: 160px;
+    min-width: 10rem;
     font-size: 18px;
     font-weight: bold;
     color: #fff;

@@ -52,7 +52,7 @@ const BlocksTable: FC<IProps> = (props) => {
                   {cols?.map((key, index) => (
                     <td
                       key={index}
-                      className={key === 'hash' ? 'hash-col' : ''}
+                      className={`${key}-col`}
                     >
                       {key === 'hash' || key === 'height' || key === 'number' ? (
                         <a href={`/block/${block?.hash}`}>{block[key]}</a>

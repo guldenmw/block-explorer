@@ -107,7 +107,7 @@ export const StyledTransaction = styled.div<any>`
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 130px;
+      min-width: 8.1rem;
       margin-top: 1rem;
       padding: 4px;
       border-radius: 4px;
