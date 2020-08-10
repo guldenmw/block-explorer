@@ -17,6 +17,12 @@ const SearchBar: FC = () => {
     }
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleHashClick();
+    }
+  }
+
   return (
     <StyledSearchBar>
       <i className="fas fa-search"/>
@@ -26,7 +32,9 @@ const SearchBar: FC = () => {
         name={'search'}
         placeholder={'Search for a block hash'}
         onChange={e => setSearchValue(e?.target?.value)}
+        onKeyDown={handleKeyDown}
       />
+
       <button
         type="button"
         className={'search-button btn btn-primary'}
