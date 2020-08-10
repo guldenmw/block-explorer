@@ -5,6 +5,14 @@ Built with React, Redux, Redux Saga, Typescript and Styled Components.
 
 NOTE: No testing is currently available. Tests need to be added for reducer, sagas and helpers.
 
+## Running a local version
+
+To run a local version of the project simply run 
+`yarn && yarn start`
+
+If you don't have yarn local installed run 
+`npm install && npm run start`
+
 ## Available Scripts
 
 In the project directory, you can run:
