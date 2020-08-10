@@ -13,7 +13,7 @@ const SearchBar: FC = () => {
 
   const handleHashClick = () => {
     if (searchValue) {
-      history.push(`/block/${searchValue}`);
+      history.push(`/block-explorer/block/${searchValue}`);
     }
   }
 

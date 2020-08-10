@@ -9,6 +9,7 @@ import Layout from '../layout';
 import LatestBlocks from '../../pages/latest-blocks';
 import SingleBlock from '../../pages/single-block';
 import ErrorPage from '../../pages/error-page';
+import { Redirect } from 'react-router';
 
 
 /**
@@ -18,17 +19,23 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path={'/block/:blockHash'} render={(props) => (
+        <Route path={'/block-explorer/block/:blockHash'} render={(props) => (
           <Layout hideOverflow={false}>
             <SingleBlock blockHash={props?.match?.params?.blockHash}/>
           </Layout>
         )}>
         </Route>
-        <Route exact path={'/'}>
+
+        <Route exact path={'/block-explorer/'}>
           <Layout>
             <LatestBlocks/>
           </Layout>
         </Route>
+
+        <Route exact path={'/'}>
+          <Redirect to={'/block-explorer/'}/>
+        </Route>
+
         <Route path="*">
           <Layout>
             <ErrorPage/>
