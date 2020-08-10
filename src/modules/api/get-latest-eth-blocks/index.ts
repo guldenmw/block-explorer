@@ -1,5 +1,5 @@
-import { handleResponse } from '../helpers';
 import { apiBase } from '../index';
+import { handleResponse } from '../helpers';
 import { IBlock } from '../../interfaces';
 
 /**

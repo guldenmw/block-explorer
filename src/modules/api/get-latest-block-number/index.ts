@@ -1,6 +1,7 @@
-import { handleResponse } from '../helpers';
 import { apiBase } from '../index';
+import { handleResponse } from '../helpers';
 import { ILatestBlock, TSymbol } from '../../interfaces';
+
 
 /**
  * API wrapper used to fetch the latest block on

@@ -16,18 +16,19 @@ interface IResponse {
  */
 function* getLastestEthBlocksWorker() {
   try {
-
     const latestBlocks: IResponse = yield call(getLatestEthBlocks, 20);
+
     const updatedBlocks = latestBlocks?.blockHeaders?.map((block) => ({
       number: block.number,
       hash: block.hash,
       time: moment.unix(Number(block.timestamp)).fromNow(true),
       miner: block.miner,
-      transactions: block.transactionCount,
-      size: block.size + ' bytes',
+      transactions: (block.transactionCount).toLocaleString('en'),
+      size: parseFloat(block.size).toLocaleString('en') + ' bytes',
     }))
 
     return yield put(fetchLatestBlocksSuccess(updatedBlocks));
+
   } catch (ex) {
     console.error(ex);
     return yield put(fetchLatestBlocksError());

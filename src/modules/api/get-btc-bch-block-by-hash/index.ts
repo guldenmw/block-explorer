@@ -1,6 +1,7 @@
 import { handleResponse } from '../helpers';
 import { IBlock, TSymbol } from '../../interfaces';
 
+
 /**
  * API wrapper that fetches a single block with the provided hash
  */

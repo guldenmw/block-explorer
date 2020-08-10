@@ -1,6 +1,7 @@
-import { handleResponse } from '../helpers';
 import { apiBase } from '../index';
+import { handleResponse } from '../helpers';
 import { IEthBlock } from '../../interfaces';
+
 
 /**
  * API wrapper that fetches a single eth block with the provided hash

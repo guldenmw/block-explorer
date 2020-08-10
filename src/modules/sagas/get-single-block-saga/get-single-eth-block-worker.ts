@@ -7,6 +7,13 @@ import { fetchSingleBlockError, fetchSingleBlockSuccess } from '../../actions';
 import { getLatestBlockNumber, getEthBlockByHash } from '../../api';
 
 
+/**
+ * Parse the provided block into the format needed for display.
+ * Do any formatting of data as well.
+ *
+ * @param block - The block object to parse
+ * @param latestBlockNumber - The latest block number to calculate confirmations
+ */
 const parseBlock = (block: IFullEthBlock, latestBlockNumber: string): IEthBlock => {
   return {
     hash: block?.hash,
@@ -31,6 +38,12 @@ const parseBlock = (block: IFullEthBlock, latestBlockNumber: string): IEthBlock 
   }
 }
 
+/**
+ * Parse the provided transaction into the format needed for display.
+ * Do any formatting of data as well.
+ *
+ * @param tx - The transaction object to format
+ */
 const parseTransaction = (tx: IFullEthTransaction): ITransaction => {
   const fee = Number(tx?.gasLimit) * Number(tx?.gasPrice)/wei;
 
@@ -49,15 +62,21 @@ const parseTransaction = (tx: IFullEthTransaction): ITransaction => {
   }
 }
 
+/**
+ * Saga worker responsible for fetching the selected ETH block by it's bash
+ * and formatting the data into the format needed for display
+ */
 function* getSingleEthBlockWorker(action) {
   try {
     const blockHash = action?.data;
 
     const latestBlockNumber = yield call(getLatestBlockNumber, 'eth');
-
     const result = yield call(getEthBlockByHash, blockHash)
 
+    // Parse blocks into desired format
     const block = parseBlock(result?.header, latestBlockNumber);
+
+    // Parse transactions into desired format
     const rawTxs: IFullEthTransaction[] = result?.transactions;
     const transactions: ITransaction[] = rawTxs?.slice(0, 5)?.map(tx => parseTransaction(tx));
 

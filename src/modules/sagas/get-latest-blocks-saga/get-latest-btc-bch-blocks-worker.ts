@@ -55,12 +55,13 @@ function* getLastestBtcBchBlocksWorker() {
         height: block.height,
         hash: block.hash,
         time: moment.unix(block.time).fromNow(true),
-        size: `${block.size} bytes`,
+        size: `${(block.size).toLocaleString('en')} bytes`,
         miner: minerName ? minerName : 'Unknown',
       })
     }
 
     return yield put(fetchLatestBlocksSuccess(updatedBlocks));
+
   } catch (ex) {
     console.error(ex);
     return yield put(fetchLatestBlocksError());

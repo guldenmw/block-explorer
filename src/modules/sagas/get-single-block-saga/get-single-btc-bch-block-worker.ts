@@ -17,6 +17,13 @@ import {
 } from '../../api';
 
 
+/**
+ * Parse the provided block into the format needed for display.
+ * Do any formatting of data as well.
+ *
+ * @param block - The block object to parse
+ * @param latestBlockNumber - The latest block number to calculate confirmations
+ */
 const parseBlock = (block: INewBlock, latestBlockNumber: number): IBlock => {
   return {
     hash: block?.hash,
@@ -38,6 +45,13 @@ const parseBlock = (block: INewBlock, latestBlockNumber: number): IBlock => {
   }
 }
 
+/**
+ * Parse the provided transaction into the format needed for display.
+ * Do any formatting of data as well.
+ *
+ * @param symbol - The symbol of the blockchain the block belongs to
+ * @param tx - The transaction object to format
+ */
 const parseTransaction = (symbol: TSymbol, tx: IFullTransaction): ITransaction => {
   const to = tx?.outputs?.map(({ address, value, spent }) => ({
       address: address?.replace('bitcoincash:', ''),
@@ -45,6 +59,7 @@ const parseTransaction = (symbol: TSymbol, tx: IFullTransaction): ITransaction =
       value: `${value/satoshi} ${symbol.toUpperCase()}`
   }
   ));
+
   const fee = tx?.fee/satoshi;
   const valueRaw = tx?.outputs?.reduce((acc, output) => acc + output?.value, 0);
   const value = valueRaw/satoshi;
@@ -62,6 +77,10 @@ const parseTransaction = (symbol: TSymbol, tx: IFullTransaction): ITransaction =
   }
 }
 
+/**
+ * Saga worker responsible for fetching the selected BTC or BCH block by it's bash
+ * and formatting the data into the format needed for display
+ */
 function* getSingleBtcBchBlockWorker(action, symbol: TSymbol) {
   try {
     const blockHash = action?.data;

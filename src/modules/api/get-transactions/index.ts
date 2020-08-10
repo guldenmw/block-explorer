@@ -1,6 +1,7 @@
-import { handleResponse } from '../helpers';
 import { apiBase } from '../index';
+import { handleResponse } from '../helpers';
 import { ITransaction, TSymbol } from '../../interfaces';
+
 
 /**
  * API wrapper that fetches the all the transactions of the ids provided.
