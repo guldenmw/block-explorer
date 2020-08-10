@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
@@ -9,7 +9,6 @@ import Layout from '../layout';
 import LatestBlocks from '../../pages/latest-blocks';
 import SingleBlock from '../../pages/single-block';
 import ErrorPage from '../../pages/error-page';
-import { Redirect } from 'react-router';
 
 
 /**
@@ -17,7 +16,7 @@ import { Redirect } from 'react-router';
  */
 function App() {
   return (
-    <Router basename={'/block-explorer/'}>
+    <Router>
       <Switch>
         <Route path={'/block/:blockHash'} render={(props) => (
           <Layout hideOverflow={false}>

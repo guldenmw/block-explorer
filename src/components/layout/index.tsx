@@ -14,7 +14,7 @@ const Layout: FC<IProps> = (props) => {
   return (
     <StyledLayout hideOverflow={hideOverflow}>
       <header className={'layout-header'}>
-        <a href={'/block-explorer/#/'}>
+        <a href={'/'}>
           <h2>Block Explorer</h2>
         </a>
       </header>
