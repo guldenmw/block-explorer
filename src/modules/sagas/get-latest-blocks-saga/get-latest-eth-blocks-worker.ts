@@ -23,8 +23,8 @@ function* getLastestEthBlocksWorker() {
       hash: block.hash,
       time: moment.unix(Number(block.timestamp)).fromNow(true),
       miner: block.miner,
-      transactions: (block.transactionCount).toLocaleString('en'),
-      size: parseFloat(block.size).toLocaleString('en') + ' bytes',
+      transactions: (block.transactionCount)?.toLocaleString('en'),
+      size: parseFloat(block.size)?.toLocaleString('en') + ' bytes',
     }))
 
     return yield put(fetchLatestBlocksSuccess(updatedBlocks));

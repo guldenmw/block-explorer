@@ -32,9 +32,11 @@ export const StyledLayout = styled.div`
   }
   
   .layout-body {
-    max-width: 80rem;
-    padding: 0 1.5rem;
     display: flex;
+    width: 100%;
+    max-width: 80rem;
+    justify-content: center;
+    padding: 0 1.5rem;
     flex: 1;
     margin-top: 4.2rem;
     overflow: ${p => p.hideOverflow ? 'hidden' : 'auto'};

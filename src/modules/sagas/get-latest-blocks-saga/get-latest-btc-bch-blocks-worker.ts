@@ -55,7 +55,7 @@ function* getLastestBtcBchBlocksWorker() {
         height: block.height,
         hash: block.hash,
         time: moment.unix(block.time).fromNow(true),
-        size: `${(block.size).toLocaleString('en')} bytes`,
+        size: `${(block.size)?.toLocaleString('en')} bytes`,
         miner: minerName ? minerName : 'Unknown',
       })
     }
