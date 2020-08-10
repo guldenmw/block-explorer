@@ -17,7 +17,7 @@ import { Redirect } from 'react-router';
  */
 function App() {
   return (
-    <Router>
+    <Router basename={'/block-explorer/'}>
       <Switch>
         <Route path={'/block/:blockHash'} render={(props) => (
           <Layout hideOverflow={false}>
