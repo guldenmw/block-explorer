@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
-import { StyledTables } from './styles';
+
 import { ITableBlock, TSymbol } from '../../../../modules/interfaces';
 import { tableColumns } from '../../../../modules/constants';
 import SearchBar from '../../../../components/search-bar';
 import Loader from '../../../../components/loader';
+import { StyledTables } from './styles';
 
 
 interface IProps {

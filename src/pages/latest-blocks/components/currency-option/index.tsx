@@ -3,12 +3,16 @@ import { ICurrencyOption } from '../sidebar';
 import { TSymbol } from '../../../../modules/interfaces';
 import { StyledOption } from './styles';
 
+
 interface IProps {
   className: string;
   option: ICurrencyOption;
   onClick: (value: TSymbol) => void;
 }
 
+/**
+ * Component that displays a Cryptocurrency icon with it's name and current price
+ */
 const CurrencyOption: FC<IProps> = (props) => {
   const {
     className,

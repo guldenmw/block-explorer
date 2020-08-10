@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
-import { StyledTransaction } from './styles';
+
 import { ITransaction, TSymbol } from '../../../../modules/interfaces';
 import { ArrowIcon } from '../../../../components/icons';
+import { StyledTransaction } from './styles';
+
 
 interface IProps {
   symbol: TSymbol;
@@ -9,6 +11,11 @@ interface IProps {
   confirmations: number;
 }
 
+/**
+ * Component responsible for displaying the first five transactions
+ * of the current block
+ * TODO: Add pagination to allow displaying more than five transactions
+ */
 const Transaction: FC<IProps> = (props) => {
   const { symbol, transaction, confirmations } = props;
 

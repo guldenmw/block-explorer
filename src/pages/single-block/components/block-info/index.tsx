@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
-import { StyledBlockInfo } from './styles';
+
 import { IBlock, IEthBlock } from '../../../../modules/interfaces';
+import { StyledBlockInfo } from './styles';
 
 
 const formatKeyForDisplay = (key) => {
@@ -11,6 +12,9 @@ interface IProps {
   block: IBlock | IEthBlock | any;
 }
 
+/**
+ * Section displaying block specific information
+ */
 const BlockInfo: FC<IProps> = (props) => {
   const { block } = props;
   return (

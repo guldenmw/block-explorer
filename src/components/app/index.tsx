@@ -4,13 +4,17 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+
+import Layout from '../layout';
 import LatestBlocks from '../../pages/latest-blocks';
 import SingleBlock from '../../pages/single-block';
 import ErrorPage from '../../pages/error-page';
-import Layout from '../layout';
 
 
-function Index() {
+/**
+ * App component responsible for routing and rending all components
+ */
+function App() {
   return (
     <Router>
       <Switch>
@@ -35,4 +39,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default App;

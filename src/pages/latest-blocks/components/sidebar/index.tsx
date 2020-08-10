@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
-import { StyledSidebar } from './styles';
-import BitcoinIcon from '../../../../components/icons/bitcoin-icon';
-import EthereumIcon from '../../../../components/icons/ethereum-icon';
-import BitcoinCashIcon from '../../../../components/icons/bitcoin-cash-icon';
+
+import { BitcoinIcon, BitcoinCashIcon, EthereumIcon } from '../../../../components/icons';
 import { TSymbol } from '../../../../modules/interfaces';
 import CurrencyOption from '../currency-option';
+import { StyledSidebar } from './styles';
 
 
 export interface ICurrencyOption {
@@ -18,11 +17,16 @@ const currencyOptions: ICurrencyOption[] = [
   {name: 'Ethereum', icon: <EthereumIcon/>, symbol: 'eth'},
   {name: 'Bitcoin Cash', icon: <BitcoinCashIcon/>, symbol: 'bch'}
 ]
+
 interface IProps {
   symbol: TSymbol;
   selectSymbol: (symbol: TSymbol) => void;
 }
 
+/**
+ * Component responsible for rendering page's sidebar
+ * displaying cryptocurrency options
+ */
 const Sidebar: FC<IProps> = (props) => {
   const { symbol, selectSymbol } = props;
 

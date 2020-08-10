@@ -1,10 +1,14 @@
 import React, { FC } from 'react';
 import { StyledLayout } from './styles';
 
+
 interface IProps {
   hideOverflow?: boolean;
 }
 
+/**
+ * Layout component responsible for general layout of pages
+ */
 const Layout: FC<IProps> = (props) => {
   const { hideOverflow, children } = props;
   return (

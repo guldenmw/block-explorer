@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { StyledPageNotFound } from './styles';
 import SearchBar from '../../components/search-bar';
+import { StyledPageNotFound } from './styles';
 
 
 interface IProps {

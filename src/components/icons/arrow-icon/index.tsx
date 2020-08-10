@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 
+
 const ArrowIcon: FC = () => {
   return (
     <svg enableBackground="new 0 0 32 32" height="32px" id="svg2" version="1.1" viewBox="0 0 32 32" width="32px"
@@ -13,7 +14,5 @@ const ArrowIcon: FC = () => {
     </svg>
   );
 };
-
-ArrowIcon.defaultProps = {};
 
 export default ArrowIcon;

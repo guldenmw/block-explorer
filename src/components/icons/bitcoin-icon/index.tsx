@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 
+
 const BitcoinIcon: FC = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox={'0 0 64 64'} width="50" height="50">
@@ -12,7 +13,5 @@ const BitcoinIcon: FC = () => {
     </svg>
   );
 };
-
-BitcoinIcon.defaultProps = {};
 
 export default BitcoinIcon;

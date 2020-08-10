@@ -1,18 +1,24 @@
 import React, { FC, useEffect } from 'react';
-import { StyledSingleBlock } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import checkSymbol from '../../modules/api/check-symbol';
-import Loader from '../../components/loader';
-import { fetchSingleBlockStart, selectSymbol } from '../../modules/actions';
+
 import { IApplicationState } from '../../modules/reducer';
-import CurrentBlock from './components/current-block';
+import { fetchSingleBlockStart, selectSymbol } from '../../modules/actions';
+import checkSymbol from '../../modules/api/check-symbol';
+
+import Loader from '../../components/loader';
 import ErrorPage from '../error-page';
+import CurrentBlock from './components/current-block';
+import { StyledSingleBlock } from './styles';
 
 
 interface IProps {
   blockHash: string;
 }
 
+/**
+ * Page responsible for showing the specific block that was
+ * selected or searched for
+ */
 const SingleBlock: FC<IProps> = (props) => {
   const {
     blockHash,
@@ -32,6 +38,8 @@ const SingleBlock: FC<IProps> = (props) => {
     checkSymbol(blockHash).then((result) => dispatch(selectSymbol(result)));
   }, []);
 
+  // When we have figured out what currency the block belongs to
+  // or the block hash changes, fetch the block at the given hash again.
   useEffect(() => {
     if (currentSymbol) {
       dispatch(fetchSingleBlockStart(blockHash));
@@ -43,6 +51,7 @@ const SingleBlock: FC<IProps> = (props) => {
       {isLoading && (
         <Loader/>
       )}
+
       {!isLoading && !hasError && (
         <StyledSingleBlock>
           {!!Object.entries(currentBlock).length && (
@@ -54,6 +63,7 @@ const SingleBlock: FC<IProps> = (props) => {
           )}
         </StyledSingleBlock>
       )}
+
       {hasError && (
         <ErrorPage
           errorCode={'404'}

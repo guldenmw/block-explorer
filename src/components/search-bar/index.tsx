@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
-import { StyledSearchBar } from './styles';
 import { useHistory } from 'react-router';
+import { StyledSearchBar } from './styles';
 
 
 /**

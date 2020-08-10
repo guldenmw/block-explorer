@@ -1,8 +1,10 @@
 import React, { FC, useMemo } from 'react';
+
+import { IBlock, IEthBlock, ITransaction, TSymbol } from '../../../../modules/interfaces';
+import { BitcoinIcon, BitcoinCashIcon, EthereumIcon } from '../../../../components/icons';
+
 import BlockInfo from '../block-info';
 import Transaction from '../transaction';
-import { BitcoinIcon, BitcoinCashIcon, EthereumIcon } from '../../../../components/icons';
-import { IBlock, IEthBlock, ITransaction, TSymbol } from '../../../../modules/interfaces';
 
 
 const icon = {
@@ -17,6 +19,10 @@ interface IProps {
   transactions: ITransaction[];
 }
 
+/**
+ * Component responsible for displaying the current selected
+ * or searched for block
+ */
 const CurrentBlock: FC<IProps> = (props) => {
   const {
     symbol,
